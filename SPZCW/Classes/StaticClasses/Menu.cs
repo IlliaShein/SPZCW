@@ -8,8 +8,8 @@ namespace SPZCW
     {
         static public void ProcessMainMenu()
         {
-            AnsiConsole.Write(Labels.title);
-            var mainMenuChoise = AnsiConsole.Prompt(Labels.mainMenu);
+            AnsiConsole.Write(Labels.GetTitle());
+            var mainMenuChoise = AnsiConsole.Prompt(Labels.GetMainMenu());
 
             switch (mainMenuChoise)
             {
@@ -140,7 +140,7 @@ namespace SPZCW
                     break;
                     case "Change start type":
 
-                    string ChangeStartTypeMenuChoise = AnsiConsole.Prompt(Labels.changeStartTypeMenu);
+                    string ChangeStartTypeMenuChoise = AnsiConsole.Prompt(Labels.GetChangeStartTypeMenu());
                     string oldStartType = service.GetStartType().ToString();
 
                     if(ChangeStartTypeMenuChoise == service.GetStartType().ToString())

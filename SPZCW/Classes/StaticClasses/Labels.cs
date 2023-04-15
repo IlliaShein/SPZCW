@@ -4,25 +4,35 @@ namespace SPZCW
 {
     static public class Labels
     {
-        static public SelectionPrompt<string> changeStartTypeMenu = new SelectionPrompt<string>().AddChoices(new[]
+        static public SelectionPrompt<string> GetChangeStartTypeMenu()
         {
-        "Manual",
-        "Automatic",
-        "Disabled",
-        "Boot",
-        "System",
-        "[red]Back[/]"
-        });
+            return new SelectionPrompt<string>().AddChoices(new[]
+            {
+            "Manual",
+            "Automatic",
+            "Disabled",
+            "Boot",
+            "System",
+            "[red]Back[/]"
+            });
+        }
 
-        static public SelectionPrompt<string> mainMenu = new SelectionPrompt<string>().AddChoices(new[]
+        static public SelectionPrompt<string> GetMainMenu()
         {
-        "Active services",
-        "Stopped services",
-        "All services",
-        "Process service",
-        "[red]Exit[/]"
-        });
+            return new SelectionPrompt<string>().AddChoices(new[]
+            {
+            "Active services",
+            "Stopped services",
+            "All services",
+            "Process service",
+            "[red]Exit[/]"
+            });
+        }
 
-        static public FigletText title = new FigletText("SPZCW").LeftJustified().Centered();
+        static public FigletText GetTitle()
+        {
+            return new FigletText("SPZCW").LeftJustified().Centered();
+        }
+
     }
 }
