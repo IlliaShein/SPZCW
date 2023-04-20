@@ -1,6 +1,4 @@
-﻿using Spectre.Console;
-using System;
-using System.ServiceProcess;
+﻿using System.ServiceProcess;
 
 
 namespace SPZCW.Classes.StaticClasses

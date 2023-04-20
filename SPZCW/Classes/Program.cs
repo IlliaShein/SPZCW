@@ -1,7 +1,4 @@
-﻿using System.Management;
-using System.ServiceProcess;
-using System;
-using Spectre.Console;
+﻿using System.ServiceProcess;
 using SPZCW.Nums;
 
 namespace SPZCW
