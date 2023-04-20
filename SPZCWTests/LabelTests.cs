@@ -11,13 +11,13 @@ namespace SPZCWTests
         [TestMethod]
         public void GetTitleReturnsNotNull()
         {
-            Assert.IsNotNull(Labels.GetTitle());
+            Assert.IsNotNull(SpectreConsoleObjects.GetTitle());
         }
 
         [TestMethod]
         public void GetTitleReturnsCorrectColor()
         {
-            FigletText actual = Labels.GetTitle();
+            FigletText actual = SpectreConsoleObjects.GetTitle();
             FigletText expected = new FigletText("SPZCW").LeftJustified().Centered();
 
             Assert.IsTrue(actual.Color.ToString() == expected.Color.ToString());
@@ -26,7 +26,7 @@ namespace SPZCWTests
         [TestMethod]
         public void GetTitleReturnsCorrectValue()
         {
-            FigletText actual = Labels.GetTitle();
+            FigletText actual = SpectreConsoleObjects.GetTitle();
             FigletText expected = new FigletText("SPZCW").LeftJustified().Centered();
 
             Assert.IsTrue(actual.ToString() == expected.ToString());
@@ -35,13 +35,13 @@ namespace SPZCWTests
         [TestMethod]
         public void GetMainMenuReturnsNotNull()
         {
-            Assert.IsNotNull(Labels.GetMainMenu());
+            Assert.IsNotNull(SpectreConsoleObjects.GetMainMenu());
         }
 
         [TestMethod]
         public void GetChangeStartTypeMenuReturnsNotNull()
         {
-            Assert.IsNotNull(Labels.GetChangeStartTypeMenu());
+            Assert.IsNotNull(SpectreConsoleObjects.GetChangeStartTypeMenu());
         }
 
 
@@ -49,7 +49,7 @@ namespace SPZCWTests
         [TestMethod]
         public void GetMainMenuReturnsCorrectValue()
         {
-            SelectionPrompt<string> actual = Labels.GetMainMenu();
+            SelectionPrompt<string> actual = SpectreConsoleObjects.GetMainMenu();
             SelectionPrompt<string> expected = new SelectionPrompt<string>().AddChoices(new[]
             {
             "Active services",
@@ -65,7 +65,7 @@ namespace SPZCWTests
         [TestMethod]
         public void GetChangeStartTypeMenuReturnsCorrectValue()
         {
-            SelectionPrompt<string> actual = Labels.GetChangeStartTypeMenu();
+            SelectionPrompt<string> actual = SpectreConsoleObjects.GetChangeStartTypeMenu();
             SelectionPrompt<string> expected = new SelectionPrompt<string>().AddChoices(new[]
             {
             "Manual",

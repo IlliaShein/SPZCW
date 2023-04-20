@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Management;
 using System.ServiceProcess;
 
 namespace SPZCW
@@ -7,16 +8,17 @@ namespace SPZCW
     public class Service
     {
         private ServiceController _service;
+        private string _path { get; set; }
 
         public Service(ServiceController service)
         {
             _service = service;
+            _path = FindPath();
         }
 
         public Service(string displayName)
         {
             ServiceController[] services = ServiceController.GetServices();
-
 
             foreach (var srvc in services)
             {
@@ -35,6 +37,9 @@ namespace SPZCW
             {
                 throw new ArgumentException($"Service \"{displayName}\" not found");
             }
+
+            _path = FindPath();
+
         }
 
         public void Start()
@@ -122,6 +127,11 @@ namespace SPZCW
             Program.Services = Program.GetServices();
         }
 
+        public string GetPath()
+        {
+            return _path;
+        }
+
         public string GetDisplayName()
         {
             return _service.DisplayName;
@@ -155,6 +165,20 @@ namespace SPZCW
         public ServiceControllerStatus GetStatus()
         {
             return _service.Status;
+        }
+
+        private string FindPath()
+        {
+            ManagementObject wmiService = new ManagementObject("Win32_Service.Name='" + _service.ServiceName + "'");
+            wmiService.Get();
+            if(wmiService["PathName"] == null)
+            {
+                return "";
+            }
+            else
+            {
+                return wmiService["PathName"].ToString();
+            }
         }
     }
 }

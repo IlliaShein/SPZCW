@@ -1,4 +1,6 @@
 ﻿using Spectre.Console;
+using SPZCW.Classes.StaticClasses;
+using SPZCW.Nums;
 using System;
 using System.ServiceProcess;
 
@@ -6,24 +8,55 @@ namespace SPZCW
 {
     static class Menu
     {
-        static public void ProcessMainMenu()
+        static public void ProcessMainMenu(MainMenuChartType type)
         {
-            AnsiConsole.Write(Labels.GetTitle());
-            var mainMenuChoise = AnsiConsole.Prompt(Labels.GetMainMenu());
+            ProcessTitleAndBar(type);
+            var mainMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetMainMenu());
+            MainMenuChoiseProcessing(mainMenuChoise);
+        }
 
+        static private void ProcessTitleAndBar(MainMenuChartType type)
+        {
+            BreakdownChart chart;
+            switch (type)
+            {
+                case MainMenuChartType.BYSTATUS:
+                    chart = SpectreConsoleObjects.GetMainMenuChartByStatus();
+                    break;
+                case MainMenuChartType.BYSTARTTYPE:
+                    chart = SpectreConsoleObjects.GetMainMenuChartByStartType();
+                    break;
+                case MainMenuChartType.BYSERVICETYPE:
+                    chart = SpectreConsoleObjects.GetMainMenuChartByServiceType();
+                    break;
+                case MainMenuChartType.BYMACHINENAME:
+                    chart = SpectreConsoleObjects.GetMainMenuChartByMachineName();
+                    break;
+                default:
+                    throw new ArgumentException($"non-existent type: {type}");
+                    break;
+            }
+            AnsiConsole.Write(SpectreConsoleObjects.GetTitle());
+
+            AnsiConsole.Write(chart);
+            Console.WriteLine("\n");
+        }
+
+        static private void MainMenuChoiseProcessing(string mainMenuChoise)
+        {
             switch (mainMenuChoise)
             {
                 case "Active services":
 
                     var activeServices = GetActiveServicesTable();
-                    AnsiConsole.WriteLine($"Services with status \"Active\"");
+                    Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Running));
                     AnsiConsole.Write(activeServices);
 
                     break;
                 case "Stopped services":
 
                     var stoppedServices = GetStoppedServicesTable();
-                    AnsiConsole.WriteLine($"Services with status \"Stopped\"");
+                    Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Stopped));
                     AnsiConsole.Write(stoppedServices);
 
                     break;
@@ -31,6 +64,23 @@ namespace SPZCW
 
                     var allServices = GetAllServicesTable();
                     AnsiConsole.Write(allServices);
+
+                    break;
+                case "Filter services":
+
+                    var fruits = AnsiConsole.Prompt(
+                        new MultiSelectionPrompt<string>()
+                            .NotRequired() // Not required to have a favorite fruit
+                            .PageSize(15)
+                            .InstructionsText(
+                                "[grey](Press [blue]<space>[/] to toggle a fruit, " +
+                                "[green]<enter>[/] to accept)[/]")
+                            .AddChoiceGroup<string>("Status", new string [] {
+                            "Running" , "Stopped", "Other"})
+                            .AddChoiceGroup("Start type" , new string[] {
+                                "Manual", "Automatic", "Disabled", "Boot", "System"})
+                            .AddChoiceGroup("MachineName" , new string[] {
+                                "." , "other"}));
 
                     break;
                 case "Process service":
@@ -45,63 +95,46 @@ namespace SPZCW
                     break;
             }
         }
-
         static private void ProcessService()
         {
-            AnsiConsole.Write("\nService DisplayNumber: ");
+            Console.Write("\nService DisplayName: ");
             string serviceDisplayName = Console.ReadLine();
 
-            bool correctName = false;
-            Service service = null;
-            for (int i = 0; i < Program.Services.Length; i++)
-            {
-                if(serviceDisplayName == Program.Services[i].GetDisplayName())
-                {
-                    correctName = true;
-                    service = Program.Services[i];
-                    break;
-                }
-            }
-
-            
-            if(!correctName)
+            Service service = FindService(serviceDisplayName);
+            if(service == null)
             {
                 AnsiConsole.WriteLine($"\nService \"{serviceDisplayName}\" not found");
                 return;
             }
 
-            AnsiConsole.WriteLine();
-            AnsiConsole.WriteLine($"DisplayName : {service.GetDisplayName()}");
-            AnsiConsole.WriteLine($"ServiceName : {service.GetServiceName()}");
-            AnsiConsole.WriteLine($"MachineName : {service.GetMachineName()}");
-            AnsiConsole.WriteLine($"Service Type : {service.GetServiceType()}");
-            AnsiConsole.WriteLine($"Start Type : {service.GetStartType()}");
-            AnsiConsole.WriteLine($"Status : {service.GetStatus()}");
-            AnsiConsole.WriteLine();
+            Console.WriteLine();
+            AnsiConsole.Write(SpectreConsoleObjects.GetServicePathTree(service.GetPath()));
+            Console.WriteLine(Messages.ServiceInfo(service));
 
             ActionsMenuProcessing(service);
         }
 
+        static private Service FindService(string serviceDisplayName)
+        {
+            for (int i = 0; i < Program.Services.Length; i++)
+            {
+                if (serviceDisplayName == Program.Services[i].GetDisplayName())
+                {
+                    return Program.Services[i];
+                }
+            }
+
+            return null;
+        }
+
         static private void ActionsMenuProcessing(Service service)
         {
-            SelectionPrompt<string> menu = new SelectionPrompt<string>();
-
-            if(service.GetStatus() == ServiceControllerStatus.Running)
-            {
-                menu.AddChoice("Stop");
-                menu.AddChoice("Restart");
-            }
-            else if(service.GetStartType() != ServiceStartMode.Disabled && service.GetStatus() == ServiceControllerStatus.Stopped)
-            {
-                menu.AddChoice("Start");
-            }
-
-            menu.AddChoice("Change start type");
-            menu.AddChoice("Change display name");
-            menu.AddChoice("[red]Back[/]");
-
-            string ActionsMenuChoise = AnsiConsole.Prompt(menu);
-            switch (ActionsMenuChoise)
+            var actionsMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetActionsMenuMenu(service));
+            ActionsMenuChoiseProcessing(service , actionsMenuChoise);
+        }
+        static private void ActionsMenuChoiseProcessing(Service service , string actionsMenuChoise)
+        {
+            switch (actionsMenuChoise)
             {
                 case "Stop":
 
@@ -111,11 +144,22 @@ namespace SPZCW
                     break;
                 case "Start":
 
+                    if (service.GetStartType() == ServiceStartMode.Disabled)
+                    {
+                        Console.WriteLine($"Service \"{service.GetDisplayName()}\" can not be started because it has \"Disabled\" start mode." +
+                            " Change start mode to start service");
+                    }
+
                     service.Start();
                     Console.WriteLine($"Service \"{service.GetDisplayName()}\" started");
 
                     break;
                 case "Restart":
+
+                    if (service.GetStatus() == ServiceControllerStatus.Stopped)
+                    {
+                        Console.WriteLine($"Service \"{service.GetDisplayName()}\" is not running");
+                    }
 
                     service.Stop();
                     service.Start();
@@ -128,7 +172,7 @@ namespace SPZCW
                     string oldName = service.GetDisplayName();
                     string newName = Console.ReadLine();
 
-                    if(oldName == newName)
+                    if (oldName == newName)
                     {
                         Console.WriteLine("It's current service DisplayName");
                         break;
@@ -138,17 +182,17 @@ namespace SPZCW
                     Console.WriteLine($"Service DisplayName changed : {oldName} -> {newName} ");
 
                     break;
-                    case "Change start type":
+                case "Change start type":
 
-                    string ChangeStartTypeMenuChoise = AnsiConsole.Prompt(Labels.GetChangeStartTypeMenu());
+                    string ChangeStartTypeMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetChangeStartTypeMenu());
                     string oldStartType = service.GetStartType().ToString();
 
-                    if(ChangeStartTypeMenuChoise == service.GetStartType().ToString())
+                    if (ChangeStartTypeMenuChoise == service.GetStartType().ToString())
                     {
                         Console.WriteLine("It's current service start type");
                         break;
                     }
-                  
+
                     switch (ChangeStartTypeMenuChoise)
                     {
                         case "Manual":
@@ -176,34 +220,26 @@ namespace SPZCW
                 case "[red]Back[/]":
                     return;
             }
-            
         }
 
         static private Table GetAllServicesTable()
         {
             ServiceController[] services = ServiceController.GetServices();
-            var table = new Table();
-
-            table.AddColumn("DisplayName");
-            table.AddColumn(new TableColumn("ServiceName"));
-            table.AddColumn(new TableColumn("MachineName"));
-            table.AddColumn(new TableColumn("Start type"));
-            table.AddColumn(new TableColumn("ServiceType"));
-            table.AddColumn(new TableColumn("Status").Centered());
+            var table = SpectreConsoleObjects.GetServicesTable(true);
            
             foreach (var service in Program.Services)
             {
                 if (service.GetStatus() == ServiceControllerStatus.Stopped)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), $"[invert red]{service.GetStatus()}[/]");
+                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), $"[invert red]{service.GetStatus()}[/]");
                 }
                 else if (service.GetStatus() == ServiceControllerStatus.Running)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), $"[invert green]{service.GetStatus()}[/]");
+                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), $"[invert lime]{service.GetStatus()}[/]");
                 }
                 else
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(),  service.GetStartType().ToString(), service.GetServiceType().ToString(), $"[invert yellow]{service.GetStatus()}[/]");
+                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(),  service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), $"[invert yellow]{service.GetStatus()}[/]");
                 }
             }
 
@@ -222,19 +258,13 @@ namespace SPZCW
 
         static private Table ShowServicesByStatus(ServiceControllerStatus status)
         {
-            var table = new Table();
-
-            table.AddColumn("DisplayName");
-            table.AddColumn(new TableColumn("ServiceName"));
-            table.AddColumn(new TableColumn("MachineName"));
-            table.AddColumn(new TableColumn("Start type"));
-            table.AddColumn(new TableColumn("ServiceType"));
+            var table = SpectreConsoleObjects.GetServicesTable(false);
 
             foreach (var service in Program.Services)
             {
                 if (service.GetStatus() == status)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName() , service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString());
+                    table.AddRow(service.GetDisplayName(), service.GetServiceName() , service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString() , service.GetPath());
                 }
             }
 

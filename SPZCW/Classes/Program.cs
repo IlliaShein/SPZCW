@@ -1,5 +1,8 @@
-﻿using System;
+﻿using System.Management;
 using System.ServiceProcess;
+using System;
+using Spectre.Console;
+using SPZCW.Nums;
 
 namespace SPZCW
 {
@@ -10,9 +13,19 @@ namespace SPZCW
         {
             Services = GetServices();
 
+            MainMenuChartType type = MainMenuChartType.BYSTATUS;
             while (true)
             {
-                Menu.ProcessMainMenu();
+                Menu.ProcessMainMenu(type);
+
+                if (type == MainMenuChartType.BYMACHINENAME)
+                {
+                    type = MainMenuChartType.BYSTATUS;
+                }
+                else
+                {
+                    type++;
+                }
             }
         }
 
