@@ -93,11 +93,20 @@ namespace SPZCW
         {
             switch (helpMenuChoise)
             {
+                case "Program description":
+                    AnsiConsole.Write(new Markup(Messages.ServiceDescriptionHelp()));
+                    break;
                 case "Service names":
                     AnsiConsole.Write(new Markup(Messages.ServiceNamesHelp()));
                     break;
+                case "Service start types":
+                    AnsiConsole.Write(new Markup(Messages.ServiceStartTypesHelp()));
+                    break;
                 case "Service Status":
                     AnsiConsole.Write(new Markup(Messages.ServiceStatusHelp()));
+                    break;
+                case "Service types":
+                    AnsiConsole.Write(new Markup(Messages.ServiceTypesHelp()));
                     break;
             }
         }
