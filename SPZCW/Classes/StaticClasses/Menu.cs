@@ -46,40 +46,55 @@ namespace SPZCW
             switch (mainMenuChoise)
             {
                 case "Active services":
-
                     var activeServices = GetActiveServicesTable();
                     Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Running));
                     AnsiConsole.Write(activeServices);
-
                     break;
                 case "Stopped services":
-
                     var stoppedServices = GetStoppedServicesTable();
                     Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Stopped));
                     AnsiConsole.Write(stoppedServices);
-
                     break;
                 case "All services":
-
                     var allServices = GetAllServicesTable();
                     AnsiConsole.Write(allServices);
-
                     break;
                 case "Filter services":
-
                     //TO DO
                     var filterMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetFilterMenu());
-
                     break;
                 case "Process service":
-
                     ProcessService();
-
+                    break;
+                case "Help":
+                    ProcessHelpMenu();
                     break;
                 case "[red]Exit[/]":
-
                     Environment.Exit(0);
+                    break;
+            }
+        }
 
+        static private void ProcessHelpMenu()
+        {
+            while (true)
+            {
+                var helpMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetHelpMenu());
+
+                if (helpMenuChoise == "[red]Back[/]")
+                {
+                    break;
+                }
+                helpMenuChoiseProcessing(helpMenuChoise);
+            }
+        }
+
+        static private void helpMenuChoiseProcessing(string helpMenuChoise)
+        {
+            switch (helpMenuChoise)
+            {
+                case "service Status":
+                    AnsiConsole.Write(new Markup(Messages.ServiceStatusHelp()));
                     break;
             }
         }

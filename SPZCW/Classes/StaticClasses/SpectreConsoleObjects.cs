@@ -322,7 +322,21 @@ namespace SPZCW
             "All services",
             "Filter services",
             "Process service",
+            "Help",
             "[red]Exit[/]"
+            });
+        }
+
+        static public SelectionPrompt<string> GetHelpMenu()
+        {
+            return new SelectionPrompt<string>().AddChoices(new[]
+           {
+            "Program description",
+            "service Status",
+            "service names",
+            "service start types",
+            "service types",
+            "[red]Back[/]"
             });
         }
 
