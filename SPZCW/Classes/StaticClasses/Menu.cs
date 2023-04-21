@@ -34,7 +34,6 @@ namespace SPZCW
                     break;
                 default:
                     throw new ArgumentException($"non-existent type: {type}");
-                    break;
             }
             AnsiConsole.Write(SpectreConsoleObjects.GetTitle());
 
@@ -129,8 +128,15 @@ namespace SPZCW
 
         static private void ActionsMenuProcessing(Service service)
         {
-            var actionsMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetActionsMenuMenu(service));
-            ActionsMenuChoiseProcessing(service , actionsMenuChoise);
+            while(true)
+            {
+                var actionsMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetActionsMenuMenu(service));
+                if(actionsMenuChoise == "[red]Back[/]")
+                {
+                    break;
+                }
+                ActionsMenuChoiseProcessing(service, actionsMenuChoise);
+            }
         }
         static private void ActionsMenuChoiseProcessing(Service service , string actionsMenuChoise)
         {
@@ -151,19 +157,19 @@ namespace SPZCW
                     }
 
                     service.Start();
-                    Console.WriteLine($"Service \"{service.GetDisplayName()}\" started");
+                    Console.WriteLine($"Service \"{service.GetDisplayName()}\" started\n");
 
                     break;
                 case "Restart":
 
                     if (service.GetStatus() == ServiceControllerStatus.Stopped)
                     {
-                        Console.WriteLine($"Service \"{service.GetDisplayName()}\" is not running");
+                        Console.WriteLine($"Service \"{service.GetDisplayName()}\" is not running\n");
                     }
 
                     service.Stop();
                     service.Start();
-                    Console.WriteLine($"Service \"{service.GetDisplayName()}\" restarted");
+                    Console.WriteLine($"Service \"{service.GetDisplayName()}\" restarted\n");
 
                     break;
                 case "Change display name":
@@ -174,7 +180,7 @@ namespace SPZCW
 
                     if (oldName == newName)
                     {
-                        Console.WriteLine("It's current service DisplayName");
+                        Console.WriteLine("It's current service DisplayName\n");
                         break;
                     }
 
@@ -217,8 +223,6 @@ namespace SPZCW
                     Console.WriteLine($"Start type changed: {oldStartType} -> {ChangeStartTypeMenuChoise}");
 
                     break;
-                case "[red]Back[/]":
-                    return;
             }
         }
 
