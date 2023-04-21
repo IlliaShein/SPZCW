@@ -9,11 +9,13 @@ namespace SPZCW
     {
         private ServiceController _service;
         private string _path { get; set; }
+        private string _description { get; set; }
 
         public Service(ServiceController service)
         {
             _service = service;
             _path = FindPath();
+            _description = GetServiceDescription(service);
         }
 
         public Service(string displayName)
@@ -30,6 +32,7 @@ namespace SPZCW
                         throw new ArgumentException($"Service \"{displayName}\" found more than once");
                     }
                     _service = srvc;
+                    _description = GetServiceDescription(srvc);
                 }
             }
 
@@ -39,7 +42,6 @@ namespace SPZCW
             }
 
             _path = FindPath();
-
         }
 
         public void Start()
@@ -165,6 +167,29 @@ namespace SPZCW
         public ServiceControllerStatus GetStatus()
         {
             return _service.Status;
+        }
+
+        public string GetDescription()
+        {
+            return _description;
+        }
+
+        private static string GetServiceDescription(ServiceController service)
+        {
+            string cDescription = "";
+
+            ManagementObject serviceObject = new ManagementObject(new ManagementPath(string.Format("Win32_Service.Name='{0}'", service.ServiceName)));
+            
+            if(serviceObject["Description"] != null)
+            {
+                cDescription = serviceObject["Description"].ToString();
+            }
+            else
+            {
+                cDescription = "-";
+            }
+
+            return cDescription;
         }
 
         private string FindPath()

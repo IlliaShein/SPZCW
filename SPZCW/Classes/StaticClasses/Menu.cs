@@ -251,15 +251,15 @@ namespace SPZCW
             {
                 if (service.GetStatus() == ServiceControllerStatus.Stopped)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), $"[invert red]{service.GetStatus()}[/]");
+                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), service.GetDescription(), $"[invert red]{service.GetStatus()}[/]");
                 }
                 else if (service.GetStatus() == ServiceControllerStatus.Running)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), $"[invert lime]{service.GetStatus()}[/]");
+                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), service.GetDescription(), $"[invert lime]{service.GetStatus()}[/]");
                 }
                 else
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(),  service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), $"[invert yellow]{service.GetStatus()}[/]");
+                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(),  service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), service.GetDescription(), $"[invert yellow]{service.GetStatus()}[/]");
                 }
             }
 
@@ -284,7 +284,7 @@ namespace SPZCW
             {
                 if (service.GetStatus() == status)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName() , service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString() , service.GetPath());
+                    table.AddRow(service.GetDisplayName(), service.GetServiceName() , service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString() , service.GetPath() , service.GetDescription());
                 }
             }
 

@@ -281,7 +281,8 @@ namespace SPZCW
             table.AddColumn(new TableColumn("Start type"));
             table.AddColumn(new TableColumn("ServiceType"));
             table.AddColumn(new TableColumn("Path"));
-            if(addStatusColumn)
+            table.AddColumn(new TableColumn("Description"));
+            if (addStatusColumn)
             {
                 table.AddColumn(new TableColumn("Status").Centered());
             }
