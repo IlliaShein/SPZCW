@@ -5,6 +5,19 @@ namespace SPZCW
 {
     static public class SpectreConsoleObjects
     {
+
+        static public MultiSelectionPrompt<string> GetFilterMenu()
+        {
+            return new MultiSelectionPrompt<string>()
+                            .PageSize(15)
+                            .AddChoiceGroup<string>("Status", new string[] {
+                            "Running" , "Stopped", "Other"})
+                            .AddChoiceGroup("Start type", new string[] {
+                                "Manual", "Automatic", "Disabled", "Boot", "System"})
+                            .AddChoiceGroup("MachineName", new string[] {
+                                "Localhost" , "other"})
+                            .AddChoiceGroup("Back", new string[] { });
+        }
         static public Tree GetServicePathTree(string path)
         {
             string[] splittedPath = path.Split('\\');

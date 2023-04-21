@@ -67,19 +67,8 @@ namespace SPZCW
                     break;
                 case "Filter services":
 
-                    var fruits = AnsiConsole.Prompt(
-                        new MultiSelectionPrompt<string>()
-                            .NotRequired() // Not required to have a favorite fruit
-                            .PageSize(15)
-                            .InstructionsText(
-                                "[grey](Press [blue]<space>[/] to toggle a fruit, " +
-                                "[green]<enter>[/] to accept)[/]")
-                            .AddChoiceGroup<string>("Status", new string [] {
-                            "Running" , "Stopped", "Other"})
-                            .AddChoiceGroup("Start type" , new string[] {
-                                "Manual", "Automatic", "Disabled", "Boot", "System"})
-                            .AddChoiceGroup("MachineName" , new string[] {
-                                "." , "other"}));
+                    //TO DO
+                    var filterMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetFilterMenu());
 
                     break;
                 case "Process service":
