@@ -9,6 +9,23 @@ namespace SPZCW.Classes.StaticClasses
         {
             return $"Services with status \"{status}\"";
         }
+        
+        static public string ServiceNamesHelp()
+        {
+            string introduction = "[bold]Each service is identified by a unique name, which consists of three components: " +
+                "the service name, the display name, and the machine name.[/]\n\n\r";
+            string displayName = "[red]DisplayName[/]: The display name is the name that is shown to users in the Windows" +
+                " Services applet in the Control Panel. The display name can be different from the service name," +
+                " and is typically a more user-friendly name that describes the function of the service.\n\n\r";
+            string serviceName = "[red]ServiceName[/]: The service name is the name used to identify the service internally in" +
+                " Windows. This name is used by the operating system to start and stop the service," +
+                " as well as to monitor its status.\n\n\r";
+            string machineName = "[red]MachineName[/]: This name is used to specify the name of the machine on which" +
+                " the service is running. This property is optional, and if it is not specified, the local machine" +
+                " is assumed.\n\n\r";
+
+            return introduction + displayName + serviceName + machineName;
+        }
 
         static public string ServiceStatusHelp()
         {

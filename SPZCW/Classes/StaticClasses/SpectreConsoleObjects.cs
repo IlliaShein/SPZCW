@@ -332,10 +332,10 @@ namespace SPZCW
             return new SelectionPrompt<string>().AddChoices(new[]
            {
             "Program description",
-            "service Status",
-            "service names",
-            "service start types",
-            "service types",
+            "Service Status",
+            "Service names",
+            "Service start types",
+            "Service types",
             "[red]Back[/]"
             });
         }
