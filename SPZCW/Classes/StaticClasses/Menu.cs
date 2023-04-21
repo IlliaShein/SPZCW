@@ -249,18 +249,21 @@ namespace SPZCW
            
             foreach (var service in Program.Services)
             {
-                if (service.GetStatus() == ServiceControllerStatus.Stopped)
+                string statusStr;
+                if(service.GetStatus() == ServiceControllerStatus.Stopped)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), service.GetDescription(), $"[invert red]{service.GetStatus()}[/]");
+                    statusStr = $"[bold black on red]{service.GetStatus()}[/]";
                 }
-                else if (service.GetStatus() == ServiceControllerStatus.Running)
+                else if(service.GetStatus() == ServiceControllerStatus.Running)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), service.GetDescription(), $"[invert lime]{service.GetStatus()}[/]");
+                    statusStr = $"[bold black on lime]{service.GetStatus()}[/]";
                 }
                 else
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(),  service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), service.GetDescription(), $"[invert yellow]{service.GetStatus()}[/]");
+                    statusStr = $"[bold black on yellow]{service.GetStatus()}[/]";
                 }
+
+                table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), service.GetDescription(), statusStr);
             }
 
             return table;
