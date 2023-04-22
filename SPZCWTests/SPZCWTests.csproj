@@ -64,7 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LabelTests.cs" />
+    <Compile Include="MessagesTests.cs" />
+    <Compile Include="SpectreConsoleObjectsTests.cs" />
     <Compile Include="ServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

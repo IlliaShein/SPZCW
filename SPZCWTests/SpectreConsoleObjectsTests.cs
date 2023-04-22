@@ -6,7 +6,7 @@ using SPZCW;
 namespace SPZCWTests
 {
     [TestClass]
-    public class LabelsTests
+    public class SpectreConsoleObjectsTests
     {
         [TestMethod]
         public void GetTitleReturnsNotNull()
@@ -17,18 +17,26 @@ namespace SPZCWTests
         [TestMethod]
         public void GetTitleReturnsCorrectColor()
         {
-            FigletText actual = SpectreConsoleObjects.GetTitle();
+            //Arrange
             FigletText expected = new FigletText("SPZCW").LeftJustified().Centered();
 
+            //Act
+            FigletText actual = SpectreConsoleObjects.GetTitle();
+
+            //Assert
             Assert.IsTrue(actual.Color.ToString() == expected.Color.ToString());
         }
 
         [TestMethod]
         public void GetTitleReturnsCorrectValue()
         {
-            FigletText actual = SpectreConsoleObjects.GetTitle();
+            //Arrange
             FigletText expected = new FigletText("SPZCW").LeftJustified().Centered();
 
+            //Act
+            FigletText actual = SpectreConsoleObjects.GetTitle();
+
+            //Assert
             Assert.IsTrue(actual.ToString() == expected.ToString());
         }
 
@@ -49,7 +57,10 @@ namespace SPZCWTests
         [TestMethod]
         public void GetMainMenuReturnsCorrectValue()
         {
+            //Arrange
             SelectionPrompt<string> actual = SpectreConsoleObjects.GetMainMenu();
+
+            //Act
             SelectionPrompt<string> expected = new SelectionPrompt<string>().AddChoices(new[]
             {
             "Active services",
@@ -59,13 +70,17 @@ namespace SPZCWTests
             "[red]Exit[/]"
             });
 
+            //Assert
             Assert.IsTrue(actual.ToString() == expected.ToString());
         }
 
         [TestMethod]
         public void GetChangeStartTypeMenuReturnsCorrectValue()
         {
+            //Arrange
             SelectionPrompt<string> actual = SpectreConsoleObjects.GetChangeStartTypeMenu();
+
+            //Act
             SelectionPrompt<string> expected = new SelectionPrompt<string>().AddChoices(new[]
             {
             "Manual",
@@ -76,6 +91,28 @@ namespace SPZCWTests
             "[red]Back[/]"
             });
 
+            //Assert
+            Assert.IsTrue(actual.ToString() == expected.ToString());
+        }
+
+        [TestMethod]
+        public void GetHelpMenuReturnsCorrectValue()
+        {
+            //Arrange
+            SelectionPrompt<string> expected = new SelectionPrompt<string>().AddChoices(new[]
+            {
+            "Program description",
+            "Service Status",
+            "Service names",
+            "Service start types",
+            "Service types",
+            "[red]Back[/]"
+            });
+
+            // Act
+            SelectionPrompt<string> actual = SpectreConsoleObjects.GetChangeStartTypeMenu();
+
+            //Assert
             Assert.IsTrue(actual.ToString() == expected.ToString());
         }
     }
