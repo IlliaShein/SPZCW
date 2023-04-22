@@ -1,11 +1,12 @@
 ﻿using Microsoft.Win32;
+using SPZCW.Interfaces;
 using System;
 using System.Management;
 using System.ServiceProcess;
 
 namespace SPZCW
 {
-    public class Service
+    public class Service : IService
     {
         private ServiceController _service;
         private string _path { get; set; }
@@ -15,7 +16,7 @@ namespace SPZCW
         {
             _service = service;
             _path = FindPath();
-            _description = GetServiceDescription(service);
+            _description = FindDescription(service);
         }
 
         public Service(string displayName)
@@ -32,7 +33,7 @@ namespace SPZCW
                         throw new ArgumentException($"Service \"{displayName}\" found more than once");
                     }
                     _service = srvc;
-                    _description = GetServiceDescription(srvc);
+                    _description = FindDescription(srvc);
                 }
             }
 
@@ -113,18 +114,17 @@ namespace SPZCW
 
         public void ChangeStartType(ServiceStartMode newMode)
         {
-            using (var serviceKey = Registry.LocalMachine.OpenSubKey($"SYSTEM\\CurrentControlSet\\Services\\{_service.ServiceName}", true))
+            var serviceKey = Registry.LocalMachine.OpenSubKey($"SYSTEM\\CurrentControlSet\\Services\\{_service.ServiceName}", true);
+            
+            if (serviceKey != null)
             {
-                if (serviceKey != null)
-                {
-                    serviceKey.SetValue("Start", (int)newMode);
-                }
-                else
-                {
-                    throw new Exception($"Service \"{_service.ServiceName}\" was not found in the registry.");
-                }
+                serviceKey.SetValue("Start", (int)newMode);
             }
-
+            else
+            {
+                throw new Exception($"Service \"{_service.ServiceName}\" was not found in the registry.");
+            }
+            
             _service.Refresh();
             Program.Services = Program.GetServices();
         }
@@ -174,22 +174,22 @@ namespace SPZCW
             return _description;
         }
 
-        private static string GetServiceDescription(ServiceController service)
+        private static string FindDescription(ServiceController service)
         {
-            string cDescription = "";
+            string description = "";
 
             ManagementObject serviceObject = new ManagementObject(new ManagementPath(string.Format("Win32_Service.Name='{0}'", service.ServiceName)));
             
             if(serviceObject["Description"] != null)
             {
-                cDescription = serviceObject["Description"].ToString();
+                description = serviceObject["Description"].ToString();
             }
             else
             {
-                cDescription = "-";
+                description = "-";
             }
 
-            return cDescription;
+            return description;
         }
 
         private string FindPath()
