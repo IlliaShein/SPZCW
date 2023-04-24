@@ -290,7 +290,7 @@ namespace SPZCW
 
             return table;
         }
-        static public SelectionPrompt<string> GetActionsMenuMenu(IService service)
+        static public SelectionPrompt<string> GetActionsMenu(IService service)
         {
             return new SelectionPrompt<string>().AddChoices(new[]
             {

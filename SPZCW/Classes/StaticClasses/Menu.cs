@@ -147,7 +147,7 @@ namespace SPZCW
         {
             while(true)
             {
-                var actionsMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetActionsMenuMenu(service));
+                var actionsMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetActionsMenu(service));
                 if(actionsMenuChoise == "[red]Back[/]")
                 {
                     break;

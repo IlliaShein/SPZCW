@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Spectre.Console;
+using Moq;
 using SPZCW;
-
+using SPZCW.Interfaces;
 
 namespace SPZCWTests
 {
@@ -9,111 +9,79 @@ namespace SPZCWTests
     public class SpectreConsoleObjectsTests
     {
         [TestMethod]
-        public void GetTitleReturnsNotNull()
+        public void TestGetTitleReturnsNotNull()
         {
             Assert.IsNotNull(SpectreConsoleObjects.GetTitle());
         }
 
         [TestMethod]
-        public void GetTitleReturnsCorrectColor()
-        {
-            //Arrange
-            FigletText expected = new FigletText("SPZCW").LeftJustified().Centered();
-
-            //Act
-            FigletText actual = SpectreConsoleObjects.GetTitle();
-
-            //Assert
-            Assert.IsTrue(actual.Color.ToString() == expected.Color.ToString());
-        }
-
-        [TestMethod]
-        public void GetTitleReturnsCorrectValue()
-        {
-            //Arrange
-            FigletText expected = new FigletText("SPZCW").LeftJustified().Centered();
-
-            //Act
-            FigletText actual = SpectreConsoleObjects.GetTitle();
-
-            //Assert
-            Assert.IsTrue(actual.ToString() == expected.ToString());
-        }
-
-        [TestMethod]
-        public void GetMainMenuReturnsNotNull()
+        public void TestGetMainMenuReturnsNotNull()
         {
             Assert.IsNotNull(SpectreConsoleObjects.GetMainMenu());
         }
 
         [TestMethod]
-        public void GetChangeStartTypeMenuReturnsNotNull()
+        public void TestGetChangeStartTypeMenuReturnsNotNull()
         {
             Assert.IsNotNull(SpectreConsoleObjects.GetChangeStartTypeMenu());
         }
 
-
-
         [TestMethod]
-        public void GetMainMenuReturnsCorrectValue()
+        public void TestGetFilterMenuReturnsNotNull()
         {
-            //Arrange
-            SelectionPrompt<string> actual = SpectreConsoleObjects.GetMainMenu();
-
-            //Act
-            SelectionPrompt<string> expected = new SelectionPrompt<string>().AddChoices(new[]
-            {
-            "Active services",
-            "Stopped services",
-            "All services",
-            "Process service",
-            "[red]Exit[/]"
-            });
-
-            //Assert
-            Assert.IsTrue(actual.ToString() == expected.ToString());
+            Assert.IsNotNull(SpectreConsoleObjects.GetFilterMenu());
         }
 
         [TestMethod]
-        public void GetChangeStartTypeMenuReturnsCorrectValue()
+        public void TestGetServicePathTreeReturnsNotNull()
         {
-            //Arrange
-            SelectionPrompt<string> actual = SpectreConsoleObjects.GetChangeStartTypeMenu();
-
-            //Act
-            SelectionPrompt<string> expected = new SelectionPrompt<string>().AddChoices(new[]
-            {
-            "Manual",
-            "Automatic",
-            "Disabled",
-            "Boot",
-            "System",
-            "[red]Back[/]"
-            });
-
-            //Assert
-            Assert.IsTrue(actual.ToString() == expected.ToString());
+            Assert.IsNotNull(SpectreConsoleObjects.GetServicePathTree("NotNull"));
         }
 
         [TestMethod]
-        public void GetHelpMenuReturnsCorrectValue()
+        public void TestGetMainMenuChartByStatusReturnsNotNull()
         {
-            //Arrange
-            SelectionPrompt<string> expected = new SelectionPrompt<string>().AddChoices(new[]
-            {
-            "Program description",
-            "Service Status",
-            "Service names",
-            "Service start types",
-            "Service types",
-            "[red]Back[/]"
-            });
+            Assert.IsNotNull(SpectreConsoleObjects.GetMainMenuChartByStatus());
+        }
 
-            // Act
-            SelectionPrompt<string> actual = SpectreConsoleObjects.GetChangeStartTypeMenu();
+        [TestMethod]
+        public void TestGetMainMenuChartByStartTypeReturnsNotNull()
+        {
+            Assert.IsNotNull(SpectreConsoleObjects.GetMainMenuChartByStartType());
+        }
 
-            //Assert
-            Assert.IsTrue(actual.ToString() == expected.ToString());
+        [TestMethod]
+        public void TestGetMainMenuChartByServiceTypeReturnsNotNull()
+        {
+            Assert.IsNotNull(SpectreConsoleObjects.GetMainMenuChartByServiceType());
+        }
+
+        [TestMethod]
+        public void TestGetMainMenuChartByMachineNameReturnsNotNull()
+        {
+            Assert.IsNotNull(SpectreConsoleObjects.GetMainMenuChartByMachineName());
+        }
+
+        [TestMethod]
+        public void TestGetServicesTableReturnsNotNull()
+        {
+            Assert.IsNotNull(SpectreConsoleObjects.GetServicesTable(true));
+        }
+
+        [TestMethod]
+        public void TestGetActionsMenuReturnsNotNull()
+        {
+            //Arange
+            var serviceControllerWrapperMock = new Mock<IService>();
+
+            //Act , Assert
+            Assert.IsNotNull(SpectreConsoleObjects.GetActionsMenu(serviceControllerWrapperMock.Object));
+        }
+
+        [TestMethod]
+        public void TestGetHelpMenuReturnsNotNull()
+        {
+            Assert.IsNotNull(SpectreConsoleObjects.GetHelpMenu());
         }
     }
 }

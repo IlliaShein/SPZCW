@@ -189,7 +189,7 @@ namespace SPZCW
                 description = serviceObject["Description"].ToString();
                 return description;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 description = "-";
                 return description;
