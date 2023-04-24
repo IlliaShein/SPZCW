@@ -1,4 +1,5 @@
 ﻿using Spectre.Console;
+using SPZCW.Interfaces;
 using System.ServiceProcess;
 
 namespace SPZCW
@@ -289,7 +290,7 @@ namespace SPZCW
 
             return table;
         }
-        static public SelectionPrompt<string> GetActionsMenuMenu(Service service)
+        static public SelectionPrompt<string> GetActionsMenuMenu(IService service)
         {
             return new SelectionPrompt<string>().AddChoices(new[]
             {
@@ -346,7 +347,7 @@ namespace SPZCW
             return new FigletText("SPZCW").LeftJustified().Centered();
         }
 
-        static private string GetStartOrStopChoise(Service service)
+        static private string GetStartOrStopChoise(IService service)
         {
             if (service.GetStatus() == ServiceControllerStatus.Stopped)
             {

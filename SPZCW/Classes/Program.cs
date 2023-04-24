@@ -5,9 +5,9 @@ using SPZCW.Nums;
 
 namespace SPZCW
 {
-    class Program
+    public class Program
     {
-        static public Service[] Services;
+        static public IService[] Services;
         static void Main(string[] args)
         {
             Services = GetServices();
@@ -28,10 +28,10 @@ namespace SPZCW
             }
         }
 
-        static public Service[] GetServices()
+        static public IService [] GetServices()
         {
             ServiceController[] services = ServiceController.GetServices();
-            Service[] Services = new Service[services.Length];
+            IService[] Services = new Service[services.Length];
 
             for (int i = 0; i < services.Length; i++)
             {
@@ -40,6 +40,5 @@ namespace SPZCW
             }
             return Services;
         }
-
     }
 }

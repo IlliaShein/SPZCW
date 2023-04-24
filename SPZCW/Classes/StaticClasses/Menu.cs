@@ -1,5 +1,6 @@
 ﻿using Spectre.Console;
 using SPZCW.Classes.StaticClasses;
+using SPZCW.Interfaces;
 using SPZCW.Nums;
 using System;
 using System.ServiceProcess;
@@ -115,7 +116,7 @@ namespace SPZCW
             Console.Write("\nService DisplayName: ");
             string serviceDisplayName = Console.ReadLine();
 
-            Service service = FindService(serviceDisplayName);
+            IService service = FindService(serviceDisplayName);
             if(service == null)
             {
                 AnsiConsole.WriteLine($"\nService \"{serviceDisplayName}\" not found");
@@ -129,7 +130,7 @@ namespace SPZCW
             ActionsMenuProcessing(service);
         }
 
-        static private Service FindService(string serviceDisplayName)
+        static private IService FindService(string serviceDisplayName)
         {
             for (int i = 0; i < Program.Services.Length; i++)
             {
@@ -142,7 +143,7 @@ namespace SPZCW
             return null;
         }
 
-        static private void ActionsMenuProcessing(Service service)
+        static private void ActionsMenuProcessing(IService service)
         {
             while(true)
             {
@@ -154,7 +155,7 @@ namespace SPZCW
                 ActionsMenuChoiseProcessing(service, actionsMenuChoise);
             }
         }
-        static private void ActionsMenuChoiseProcessing(Service service , string actionsMenuChoise)
+        static private void ActionsMenuChoiseProcessing(IService service , string actionsMenuChoise)
         {
             switch (actionsMenuChoise)
             {
@@ -244,7 +245,6 @@ namespace SPZCW
 
         static private Table GetAllServicesTable()
         {
-            ServiceController[] services = ServiceController.GetServices();
             var table = SpectreConsoleObjects.GetServicesTable(true);
            
             foreach (var service in Program.Services)

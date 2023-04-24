@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ServiceProcess;
 
 namespace SPZCW.Interfaces
 {
-    interface IService
+    public  interface IService
     {
         void Start();
         void Stop();
@@ -19,6 +14,7 @@ namespace SPZCW.Interfaces
         string GetDisplayName();
         string GetMachineName();
         string GetServiceName();
+        string GetDescription();
         ServiceStartMode GetStartType();
         ServiceType GetServiceType();
         ServiceControllerStatus GetStatus();

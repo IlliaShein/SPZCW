@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPZCW.Interfaces;
+using System;
 using System.ServiceProcess;
 
 
@@ -119,7 +120,7 @@ namespace SPZCW.Classes.StaticClasses
 
             return introduction + automatic + manual + disabled + boot + system;
         }
-        static public string ServiceInfo(Service service)
+        static public string ServiceInfo(IService service)
         {
             string description = $"\nDescription  :\t{service.GetDescription()}\n\r";
             string displayName = $"DisplayName  :\t{service.GetDisplayName()}\n\r";
