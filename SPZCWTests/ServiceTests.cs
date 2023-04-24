@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SPZCW;
-using SPZCW.Classes;
 using SPZCW.Interfaces;
 using System;
-
+using System.ServiceProcess;
 
 namespace SPZCWTests
 {
@@ -12,13 +11,13 @@ namespace SPZCWTests
     public class ServiceTests
     {
         [TestMethod]
-        public void TestConstructor_throws_ArgumentException_when_invalid_DisplayName_is_provided()
+        public void TestConstructorThrowsArgumentExceptionWhenInvalidDisplayNameIsProvided()
         {
             Assert.ThrowsException<ArgumentException>(() => new Service("AKFH@$*(%@!ASJFP"));
         }
 
         [TestMethod]
-        public void TestGetDisplayName_ReturnsCorrectDisplayName()
+        public void TestGetDisplayName_ReturnsCorrectValue()
         {
             // Arrange
             string expected = "DisplayName";
@@ -35,7 +34,7 @@ namespace SPZCWTests
         }
 
         [TestMethod]
-        public void TestGetDisplayName_ReturnsCorrectServiceName()
+        public void TestGetServiceName_ReturnsCorrectValue()
         {
             // Arrange
             string expected = "ServiceName";
@@ -52,7 +51,7 @@ namespace SPZCWTests
         }
 
         [TestMethod]
-        public void TestGetDisplayName_ReturnsCorrectMachineName()
+        public void TestGetMachineName_ReturnsCorrectValue()
         {
             // Arrange
             string expected = "MachineName";
@@ -63,6 +62,57 @@ namespace SPZCWTests
 
             // Act
             var actual = myClass.GetMachineName();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestGetStatus_ReturnsCorrectValue()
+        {
+            // Arrange
+            var expected = ServiceControllerStatus.Running;
+            var serviceControllerWrapperMock = new Mock<IServiceController>();
+            serviceControllerWrapperMock.Setup(x => x.Status).Returns(ServiceControllerStatus.Running);
+
+            var myClass = new Service(serviceControllerWrapperMock.Object);
+
+            // Act
+            var actual = myClass.GetStatus();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestGetStartType_ReturnsCorrectValue()
+        {
+            // Arrange
+            var expected = ServiceStartMode.Automatic;
+            var serviceControllerWrapperMock = new Mock<IServiceController>();
+            serviceControllerWrapperMock.Setup(x => x.StartType).Returns(ServiceStartMode.Automatic);
+
+            var myClass = new Service(serviceControllerWrapperMock.Object);
+
+            // Act
+            var actual = myClass.GetStartType();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestGetServiceType_ReturnsCorrectValue()
+        {
+            // Arrange
+            var expected = ServiceType.KernelDriver;
+            var serviceControllerWrapperMock = new Mock<IServiceController>();
+            serviceControllerWrapperMock.Setup(x => x.ServiceType).Returns(ServiceType.KernelDriver);
+
+            var myClass = new Service(serviceControllerWrapperMock.Object);
+
+            // Act
+            var actual = myClass.GetServiceType();
 
             //Assert
             Assert.AreEqual(expected, actual);
