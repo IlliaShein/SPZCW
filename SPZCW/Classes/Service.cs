@@ -8,11 +8,11 @@ namespace SPZCW
 {
     public class Service : IService
     {
-        private ServiceController _service;
+        private IServiceController _service;
         private string _path { get; set; }
         private string _description { get; set; }
 
-        public Service(ServiceController service)
+        public Service(IServiceController service)
         {
             _service = service;
             _path = FindPath();
@@ -32,8 +32,8 @@ namespace SPZCW
                         //TO DO
                         throw new ArgumentException($"Service \"{displayName}\" found more than once");
                     }
-                    _service = srvc;
-                    _description = FindDescription(srvc);
+                    _service = (IServiceController)srvc;
+                    _description = FindDescription((IServiceController)srvc);
                 }
             }
 
@@ -174,7 +174,7 @@ namespace SPZCW
             return _description;
         }
 
-        private static string FindDescription(ServiceController service)
+        private static string FindDescription(IServiceController service)
         {
             string description = "";
 

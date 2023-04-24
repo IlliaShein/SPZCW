@@ -1,4 +1,6 @@
 ﻿using System.ServiceProcess;
+using SPZCW.Classes;
+using SPZCW.Interfaces;
 using SPZCW.Nums;
 
 namespace SPZCW
@@ -33,7 +35,8 @@ namespace SPZCW
 
             for (int i = 0; i < services.Length; i++)
             {
-                Services[i] = new Service(services[i]);
+                ServiceControllerWrapper SCwrapper = new ServiceControllerWrapper(services[i]);
+                Services[i] = new Service(SCwrapper);
             }
             return Services;
         }
