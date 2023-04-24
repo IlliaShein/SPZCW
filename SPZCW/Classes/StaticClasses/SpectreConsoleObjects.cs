@@ -118,7 +118,7 @@ namespace SPZCW
                     .FullSize()
                     .ShowPercentage()
                     .AddItem("Stopped", stoppedPercentage, Color.Red)
-                    .AddItem("Running", runningPercentage, Color.Lime)
+                    .AddItem("Running", runningPercentage, new Color(255, 165, 0))
                     .AddItem("Other", otherPercentage, Color.Yellow);
         }
 
@@ -165,11 +165,11 @@ namespace SPZCW
             return new BreakdownChart()
                     .FullSize()
                     .ShowPercentage()
-                    .AddItem("Automatic", automaticPercentage, Color.SlateBlue1)
-                    .AddItem("Manual", manualPercentage, Color.Lime)
-                    .AddItem("Disabled", disabledPercentage, Color.Red)
-                    .AddItem("System", systemPercentage, Color.Yellow)
-                    .AddItem("Boot", bootPercentage, Color.Orange1);
+                    .AddItem("Automatic", automaticPercentage, Color.Red)
+                    .AddItem("Manual", manualPercentage, new Color(255, 97, 0))
+                    .AddItem("Disabled", disabledPercentage, new Color(255, 165, 0))
+                    .AddItem("System", systemPercentage, new Color(255, 165 , 0))
+                    .AddItem("Boot", bootPercentage, Color.Yellow);
 
         }
 
@@ -234,14 +234,14 @@ namespace SPZCW
             return new BreakdownChart()
                     .FullSize()
                     .ShowPercentage()
-                    .AddItem("Win32OwnProcess", win32OwnProcessPercentage, Color.Red)
-                    .AddItem("Win32ShareProcess", win32ShareProcessPercentage, new Color(255, 127, 0))
+                    .AddItem("Win32OwnProcess", win32OwnProcessPercentage, new Color(255, 165, 0))
+                    .AddItem("Win32ShareProcess", win32ShareProcessPercentage, new Color(255, 63, 0))
                     .AddItem("KernelDriver", kernelDrivePercentage, new Color(255, 255, 0))
-                    .AddItem("FileSystemDriver", fileSystemDriverPercentage, new Color(0, 255, 0))
-                    .AddItem("Adapter", adapterPercentage, new Color(0, 255, 255))
-                    .AddItem("InteractiveProcess", interactiveProcessPercentage, new Color(0, 0, 255))
-                    .AddItem("RecognizerDriver", recognizerDriverPercentage, new Color(75, 0, 130))
-                    .AddItem("Other", otherPercentage, new Color(128, 0, 128));
+                    .AddItem("FileSystemDriver", fileSystemDriverPercentage, Color.Red)
+                    .AddItem("Adapter", adapterPercentage, new Color(255, 199, 0))
+                    .AddItem("InteractiveProcess", interactiveProcessPercentage, new Color(255, 217, 0))
+                    .AddItem("RecognizerDriver", recognizerDriverPercentage, Color.Yellow)
+                    .AddItem("Other", otherPercentage, new Color(255, 165, 0));
         }
 
         static public BreakdownChart GetMainMenuChartByMachineName()
@@ -269,8 +269,8 @@ namespace SPZCW
             return new BreakdownChart()
                     .FullSize()
                     .ShowPercentage()
-                    .AddItem("Localhost", localPercentage, Color.Lime)
-                    .AddItem("Other", otherPercentage, Color.SlateBlue1);
+                    .AddItem("Localhost", localPercentage, Color.Red)
+                    .AddItem("Other", otherPercentage, Color.Yellow);
         }
         static public Table GetServicesTable(bool addStatusColumn)
         {
