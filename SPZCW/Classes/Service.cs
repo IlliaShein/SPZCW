@@ -177,32 +177,41 @@ namespace SPZCW
         private static string FindDescription(IServiceController service)
         {
             string description = "";
-
             ManagementObject serviceObject = new ManagementObject(new ManagementPath(string.Format("Win32_Service.Name='{0}'", service.ServiceName)));
-            
-            if(serviceObject["Description"] != null)
+
+            try
             {
+                if(serviceObject["Description"] == null)
+                {
+                    description = "-";
+                    return description;
+                }
                 description = serviceObject["Description"].ToString();
+                return description;
             }
-            else
+            catch (Exception ex)
             {
                 description = "-";
+                return description;
             }
-
-            return description;
         }
 
         private string FindPath()
         {
             ManagementObject wmiService = new ManagementObject("Win32_Service.Name='" + _service.ServiceName + "'");
-            wmiService.Get();
-            if(wmiService["PathName"] == null)
+
+            try
+            {
+                if(wmiService["PathName"] == null)
+                {
+                    return "";
+                }
+                wmiService.Get();
+                return wmiService["PathName"].ToString();
+            }
+            catch (Exception ex)
             {
                 return "";
-            }
-            else
-            {
-                return wmiService["PathName"].ToString();
             }
         }
     }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using SPZCW;
+using SPZCW.Classes;
+using SPZCW.Interfaces;
 using System;
 
 
@@ -9,48 +12,57 @@ namespace SPZCWTests
     public class ServiceTests
     {
         [TestMethod]
-        public void Constructor_throws_ArgumentException_when_invalid_DisplayName_is_provided()
+        public void TestConstructor_throws_ArgumentException_when_invalid_DisplayName_is_provided()
         {
             Assert.ThrowsException<ArgumentException>(() => new Service("AKFH@$*(%@!ASJFP"));
         }
 
         [TestMethod]
-        public void GetDisplayName_ReturnsCorrectDisplayName()
+        public void TestGetDisplayName_ReturnsCorrectDisplayName()
         {
-            //Arrange
-            string expected = "Print Spooler";
-            Service service = new Service(expected);
+            // Arrange
+            string expected = "DisplayName";
+            var serviceControllerWrapperMock = new Mock<IServiceController>();
+            serviceControllerWrapperMock.Setup(x => x.DisplayName).Returns(expected);
 
-            //Act
-            string actual = service.GetDisplayName();
+            var myClass = new Service(serviceControllerWrapperMock.Object);
 
-            //Assert
-            Assert.AreEqual(expected,actual);
-        }
-
-        [TestMethod]
-        public void GetServiceName_ReturnsCorrectServiceName()
-        {
-            //Arrange
-            string expected = "Spooler";
-            Service service = new Service("Print Spooler");
-
-            //Act
-            string actual = service.GetServiceName();
+            // Act
+            var actual = myClass.GetDisplayName();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void GetMachineName_ReturnsCorrectMachineName()
+        public void TestGetDisplayName_ReturnsCorrectServiceName()
         {
-            //Arrange
-            string expected = ".";
-            Service service = new Service("Print Spooler");
+            // Arrange
+            string expected = "ServiceName";
+            var serviceControllerWrapperMock = new Mock<IServiceController>();
+            serviceControllerWrapperMock.Setup(x => x.ServiceName).Returns(expected);
 
-            //Act
-            string actual = service.GetMachineName();
+            var myClass = new Service(serviceControllerWrapperMock.Object);
+
+            // Act
+            var actual = myClass.GetServiceName();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestGetDisplayName_ReturnsCorrectMachineName()
+        {
+            // Arrange
+            string expected = "MachineName";
+            var serviceControllerWrapperMock = new Mock<IServiceController>();
+            serviceControllerWrapperMock.Setup(x => x.MachineName).Returns(expected);
+
+            var myClass = new Service(serviceControllerWrapperMock.Object);
+
+            // Act
+            var actual = myClass.GetMachineName();
 
             //Assert
             Assert.AreEqual(expected, actual);

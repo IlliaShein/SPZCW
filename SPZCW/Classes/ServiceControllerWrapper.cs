@@ -3,7 +3,7 @@ using System.ServiceProcess;
 
 namespace SPZCW.Classes
 {
-    class ServiceControllerWrapper : IServiceController
+    public class ServiceControllerWrapper : IServiceController
     {
         private ServiceController _serviceController;
 
