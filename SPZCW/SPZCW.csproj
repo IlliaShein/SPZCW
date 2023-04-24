@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ServiceControllerWrapper.cs" />
+    <Compile Include="Classes\StaticClasses\Colors.cs" />
     <Compile Include="Classes\StaticClasses\SpectreConsoleObjects.cs" />
     <Compile Include="Classes\StaticClasses\Menu.cs" />
     <Compile Include="Classes\Program.cs" />

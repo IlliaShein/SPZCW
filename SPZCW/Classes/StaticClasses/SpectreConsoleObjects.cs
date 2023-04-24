@@ -1,4 +1,5 @@
 ﻿using Spectre.Console;
+using SPZCW.Classes.StaticClasses;
 using SPZCW.Interfaces;
 using System.ServiceProcess;
 
@@ -117,9 +118,9 @@ namespace SPZCW
             return new BreakdownChart()
                     .FullSize()
                     .ShowPercentage()
-                    .AddItem("Stopped", stoppedPercentage, Color.Red)
-                    .AddItem("Running", runningPercentage, new Color(255, 165, 0))
-                    .AddItem("Other", otherPercentage, Color.Yellow);
+                    .AddItem("Stopped", stoppedPercentage, Colors.ColdGammaColor1())
+                    .AddItem("Running", runningPercentage, Colors.ColdGammaColor6())
+                    .AddItem("Other", otherPercentage, Colors.ColdGammaColor2());
         }
 
         static public BreakdownChart GetMainMenuChartByStartType()
@@ -165,11 +166,11 @@ namespace SPZCW
             return new BreakdownChart()
                     .FullSize()
                     .ShowPercentage()
-                    .AddItem("Automatic", automaticPercentage, Color.Red)
-                    .AddItem("Manual", manualPercentage, new Color(255, 97, 0))
-                    .AddItem("Disabled", disabledPercentage, new Color(255, 165, 0))
-                    .AddItem("System", systemPercentage, new Color(255, 165 , 0))
-                    .AddItem("Boot", bootPercentage, Color.Yellow);
+                    .AddItem("Automatic", automaticPercentage, Colors.ColdGammaColor1())
+                    .AddItem("Manual", manualPercentage, Colors.ColdGammaColor6())
+                    .AddItem("Disabled", disabledPercentage, Colors.ColdGammaColor2())
+                    .AddItem("System", systemPercentage, Colors.ColdGammaColor5())
+                    .AddItem("Boot", bootPercentage, Colors.ColdGammaColor3());
 
         }
 
@@ -234,14 +235,14 @@ namespace SPZCW
             return new BreakdownChart()
                     .FullSize()
                     .ShowPercentage()
-                    .AddItem("Win32OwnProcess", win32OwnProcessPercentage, new Color(255, 165, 0))
-                    .AddItem("Win32ShareProcess", win32ShareProcessPercentage, new Color(255, 63, 0))
-                    .AddItem("KernelDriver", kernelDrivePercentage, new Color(255, 255, 0))
-                    .AddItem("FileSystemDriver", fileSystemDriverPercentage, Color.Red)
-                    .AddItem("Adapter", adapterPercentage, new Color(255, 199, 0))
-                    .AddItem("InteractiveProcess", interactiveProcessPercentage, new Color(255, 217, 0))
-                    .AddItem("RecognizerDriver", recognizerDriverPercentage, Color.Yellow)
-                    .AddItem("Other", otherPercentage, new Color(255, 165, 0));
+                    .AddItem("Win32OwnProcess", win32OwnProcessPercentage, Colors.ColdGammaColor1())
+                    .AddItem("Win32ShareProcess", win32ShareProcessPercentage, Colors.ColdGammaColor8())
+                    .AddItem("KernelDriver", kernelDrivePercentage, Colors.ColdGammaColor2())
+                    .AddItem("FileSystemDriver", fileSystemDriverPercentage, Colors.ColdGammaColor7())
+                    .AddItem("Adapter", adapterPercentage, Colors.ColdGammaColor3())
+                    .AddItem("InteractiveProcess", interactiveProcessPercentage, Colors.ColdGammaColor6())
+                    .AddItem("RecognizerDriver", recognizerDriverPercentage, Colors.ColdGammaColor4())
+                    .AddItem("Other", otherPercentage, Colors.ColdGammaColor5());
         }
 
         static public BreakdownChart GetMainMenuChartByMachineName()
@@ -269,8 +270,8 @@ namespace SPZCW
             return new BreakdownChart()
                     .FullSize()
                     .ShowPercentage()
-                    .AddItem("Localhost", localPercentage, Color.Red)
-                    .AddItem("Other", otherPercentage, Color.Yellow);
+                    .AddItem("Localhost", localPercentage, Colors.ColdGammaColor1())
+                    .AddItem("Other", otherPercentage, Colors.ColdGammaColor6());
         }
         static public Table GetServicesTable(bool addStatusColumn)
         {
