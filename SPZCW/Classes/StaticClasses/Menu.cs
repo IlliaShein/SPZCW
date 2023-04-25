@@ -124,7 +124,7 @@ namespace SPZCW
             }
 
             Console.WriteLine();
-            AnsiConsole.Write(SpectreConsoleObjects.GetServicePathTree(service.GetPath()));
+            AnsiConsole.Write(SpectreConsoleObjects.GetServicePathTree(service.Path));
             Console.WriteLine(Messages.ServiceInfo(service));
 
             ActionsMenuProcessing(service);
@@ -263,7 +263,7 @@ namespace SPZCW
                     statusStr = $"[bold black on yellow]{service.GetStatus()}[/]";
                 }
 
-                table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.GetPath(), service.GetDescription(), statusStr);
+                table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.Path, service.Description, statusStr);
             }
 
             return table;
@@ -287,7 +287,7 @@ namespace SPZCW
             {
                 if (service.GetStatus() == status)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName() , service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString() , service.GetPath() , service.GetDescription());
+                    table.AddRow(service.GetDisplayName(), service.GetServiceName() , service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.Path, service.Description);
                 }
             }
 

@@ -7,7 +7,7 @@ namespace SPZCW
 {
     public class Program
     {
-        static public IService[] Services;
+        static public IService[] Services { get; set; }
         static void Main(string[] args)
         {
             Services = GetServices();

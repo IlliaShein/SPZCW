@@ -121,13 +121,13 @@ namespace SPZCW.Classes.StaticClasses
         }
         static public string ServiceInfo(IService service)
         {
-            string description = $"\nDescription  :\t{service.GetDescription()}\n\r";
+            string description = $"\nDescription  :\t{service.Description}\n\r";
             string displayName = $"DisplayName  :\t{service.GetDisplayName()}\n\r";
             string serviceName = $"ServiceName  :\t{service.GetServiceName()}\n\r";
             string machineName = $"MachineName  :\t{service.GetMachineName()}\n\r";
             string serviceType = $"Service Type :\t{service.GetServiceType()}\n\r";
             string startType =   $"Start Type   :\t{service.GetStartType()}\n\r";
-            string servicePath = $"Path         :\t{service.GetPath()}\n\r";
+            string servicePath = $"Path         :\t{service.Path}\n\r";
             string status =      $"Status       :\t{service.GetStatus()}\n\r";
 
             return description + displayName + serviceName + machineName + serviceType + servicePath + startType + status;

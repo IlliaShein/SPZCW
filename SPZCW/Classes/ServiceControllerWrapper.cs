@@ -5,7 +5,7 @@ namespace SPZCW.Classes
 {
     public class ServiceControllerWrapper : IServiceController
     {
-        private ServiceController _serviceController;
+        private ServiceController _serviceController { get; set; }
 
         public ServiceControllerWrapper(ServiceController serviceController)
         {

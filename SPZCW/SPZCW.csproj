@@ -69,7 +69,7 @@
     <Compile Include="Classes\StaticClasses\Messages.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IServiceController.cs" />
-    <Compile Include="Nums\Enumerations.cs" />
+    <Compile Include="Enumerations\MainMenuChartType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Service.cs" />
   </ItemGroup>

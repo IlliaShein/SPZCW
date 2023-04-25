@@ -11,12 +11,6 @@ namespace SPZCWTests
     public class ServiceTests
     {
         [TestMethod]
-        public void TestConstructorThrowsArgumentExceptionWhenInvalidDisplayNameIsProvided()
-        {
-            Assert.ThrowsException<ArgumentException>(() => new Service("AKFH@$*(%@!ASJFP"));
-        }
-
-        [TestMethod]
         public void TestGetDisplayName_ReturnsCorrectValue()
         {
             // Arrange

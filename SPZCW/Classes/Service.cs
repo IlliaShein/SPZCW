@@ -8,41 +8,15 @@ namespace SPZCW
 {
     public class Service : IService
     {
-        private IServiceController _service;
-        private string _path { get; set; }
-        private string _description { get; set; }
+        private IServiceController _service { get; set; }
+        public string Path { get;}
+        public string Description { get; }
 
         public Service(IServiceController service)
         {
             _service = service;
-            _path = FindPath();
-            _description = FindDescription(service);
-        }
-
-        public Service(string displayName)
-        {
-            ServiceController[] services = ServiceController.GetServices();
-
-            foreach (var srvc in services)
-            {
-                if (srvc.DisplayName == displayName && _service == null)
-                {
-                    if (_service != null)
-                    {
-                        //TO DO
-                        throw new ArgumentException($"Service \"{displayName}\" found more than once");
-                    }
-                    _service = (IServiceController)srvc;
-                    _description = FindDescription((IServiceController)srvc);
-                }
-            }
-
-            if (_service == null)
-            {
-                throw new ArgumentException($"Service \"{displayName}\" not found");
-            }
-
-            _path = FindPath();
+            Path = FindPath();
+            Description = FindDescription(service);
         }
 
         public void Start()
@@ -129,11 +103,6 @@ namespace SPZCW
             Program.Services = Program.GetServices();
         }
 
-        public string GetPath()
-        {
-            return _path;
-        }
-
         public string GetDisplayName()
         {
             return _service.DisplayName;
@@ -167,11 +136,6 @@ namespace SPZCW
         public ServiceControllerStatus GetStatus()
         {
             return _service.Status;
-        }
-
-        public string GetDescription()
-        {
-            return _description;
         }
 
         private static string FindDescription(IServiceController service)
@@ -209,7 +173,7 @@ namespace SPZCW
                 wmiService.Get();
                 return wmiService["PathName"].ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return "";
             }
