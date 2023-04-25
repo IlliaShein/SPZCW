@@ -25,7 +25,7 @@ namespace SPZCW.Classes
                 }
                 else if(choise == "Stopped")
                 {
-                    Statuses.Add(ServiceControllerStatus.Running);
+                    Statuses.Add(ServiceControllerStatus.Stopped);
                 }
                 else if(choise == "Other")
                 {

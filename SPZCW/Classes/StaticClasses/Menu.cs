@@ -1,6 +1,7 @@
 ﻿using Spectre.Console;
 using SPZCW.Classes;
 using SPZCW.Classes.StaticClasses;
+using SPZCW.Enumerations;
 using SPZCW.Interfaces;
 using SPZCW.Nums;
 using System;
@@ -79,9 +80,14 @@ namespace SPZCW
         static private void ProcessFilterMenu()
         {
             var filterMenuChoises = AnsiConsole.Prompt(SpectreConsoleObjects.GetFilterMenu());
+            if(filterMenuChoises.Contains("Back"))
+            {
+                return;
+            }
+
             IFilterSettings filterSettings = new FilterSettings(filterMenuChoises);
 
-            var filteredTable = SpectreConsoleObjects.GetFilteredServicesTable(filterSettings);
+            var filteredTable = GetFilteredServicesTable(filterSettings);
             AnsiConsole.Write(filteredTable);
         }
 
@@ -258,20 +264,7 @@ namespace SPZCW
            
             foreach (var service in Program.Services)
             {
-                string statusStr;
-                if(service.GetStatus() == ServiceControllerStatus.Stopped)
-                {
-                    statusStr = $"[bold black on red]{service.GetStatus()}[/]";
-                }
-                else if(service.GetStatus() == ServiceControllerStatus.Running)
-                {
-                    statusStr = $"[bold black on lime]{service.GetStatus()}[/]";
-                }
-                else
-                {
-                    statusStr = $"[bold black on yellow]{service.GetStatus()}[/]";
-                }
-
+                string statusStr = GetStatusStringWithColorNote(service);
                 table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.Path, service.Description, statusStr);
             }
 
@@ -288,6 +281,44 @@ namespace SPZCW
             return ShowServicesByStatus(ServiceControllerStatus.Stopped);
         }
 
+        static private Table GetFilteredServicesTable(IFilterSettings filterSettings)
+        {
+            Table table = SpectreConsoleObjects.GetServicesTable(true);
+
+            foreach (var service in Program.Services)
+            {
+                if(filterSettings.Statuses.Contains(service.GetStatus()) && filterSettings.StartModes.Contains(service.GetStartType()))
+                {
+                    if((service.GetMachineName() == "." && filterSettings.Locations.Contains(ServiceLocation.LocalHost))
+                    || (service.GetMachineName() != "." && filterSettings.Locations.Contains(ServiceLocation.AnotherDevice)))
+                    {
+                        string statusStr = GetStatusStringWithColorNote(service);
+                        table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.Path, service.Description, statusStr);
+                    }
+                }
+            }
+            return table;
+        }
+
+        static private string GetStatusStringWithColorNote(IService service)
+        {
+            string statusStr;
+
+            if (service.GetStatus() == ServiceControllerStatus.Stopped)
+            {
+                statusStr = $"[bold black on red]{service.GetStatus()}[/]";
+            }
+            else if (service.GetStatus() == ServiceControllerStatus.Running)
+            {
+                statusStr = $"[bold black on lime]{service.GetStatus()}[/]";
+            }
+            else
+            {
+                statusStr = $"[bold black on yellow]{service.GetStatus()}[/]";
+            }
+
+            return statusStr;
+        }
         static private Table ShowServicesByStatus(ServiceControllerStatus status)
         {
             var table = SpectreConsoleObjects.GetServicesTable(false);

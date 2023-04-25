@@ -273,10 +273,6 @@ namespace SPZCW
                     .AddItem("Localhost", localPercentage, Colors.ColdGammaColor1())
                     .AddItem("Other", otherPercentage, Colors.ColdGammaColor6());
         }
-        static public Table GetFilteredServicesTable(IFilterSettings filterSettings)
-        {
-            throw new NotImplementedException();
-        }
 
         static public Table GetServicesTable(bool addStatusColumn)
         {
