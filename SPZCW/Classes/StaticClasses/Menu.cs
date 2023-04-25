@@ -1,4 +1,5 @@
 ﻿using Spectre.Console;
+using SPZCW.Classes;
 using SPZCW.Classes.StaticClasses;
 using SPZCW.Interfaces;
 using SPZCW.Nums;
@@ -61,8 +62,7 @@ namespace SPZCW
                     AnsiConsole.Write(allServices);
                     break;
                 case "Filter services":
-                    //TO DO
-                    var filterMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetFilterMenu());
+                    ProcessFilterMenu();
                     break;
                 case "Process service":
                     ProcessService();
@@ -74,6 +74,15 @@ namespace SPZCW
                     Environment.Exit(0);
                     break;
             }
+        }
+
+        static private void ProcessFilterMenu()
+        {
+            var filterMenuChoises = AnsiConsole.Prompt(SpectreConsoleObjects.GetFilterMenu());
+            IFilterSettings filterSettings = new FilterSettings(filterMenuChoises);
+
+            var filteredTable = SpectreConsoleObjects.GetFilteredServicesTable(filterSettings);
+            AnsiConsole.Write(filteredTable);
         }
 
         static private void ProcessHelpMenu()
@@ -292,11 +301,6 @@ namespace SPZCW
             }
 
             return table;
-        }
-
-        static private Table GetFilteredServices()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SPZCW.Interfaces
 {
-    interface IFilterSettings
+    public interface IFilterSettings
     {
         List<ServiceControllerStatus> Statuses {get;}
         List<ServiceStartMode> StartModes { get;}

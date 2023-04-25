@@ -1,13 +1,13 @@
 ﻿using Spectre.Console;
 using SPZCW.Classes.StaticClasses;
 using SPZCW.Interfaces;
+using System;
 using System.ServiceProcess;
 
 namespace SPZCW
 {
     static public class SpectreConsoleObjects
     {
-
         static public MultiSelectionPrompt<string> GetFilterMenu()
         {
             return new MultiSelectionPrompt<string>()
@@ -17,7 +17,7 @@ namespace SPZCW
                             .AddChoiceGroup("Start type", new string[] {
                                 "Manual", "Automatic", "Disabled", "Boot", "System"})
                             .AddChoiceGroup("MachineName", new string[] {
-                                "Localhost" , "other"})
+                                "Localhost" , "Another device"})
                             .AddChoiceGroup("Back", new string[] { });
         }
         static public Tree GetServicePathTree(string path)
@@ -273,6 +273,11 @@ namespace SPZCW
                     .AddItem("Localhost", localPercentage, Colors.ColdGammaColor1())
                     .AddItem("Other", otherPercentage, Colors.ColdGammaColor6());
         }
+        static public Table GetFilteredServicesTable(IFilterSettings filterSettings)
+        {
+            throw new NotImplementedException();
+        }
+
         static public Table GetServicesTable(bool addStatusColumn)
         {
             Table table = new Table();
