@@ -2,9 +2,9 @@
 {
     public enum MainMenuChartType
     {
-        BYSTATUS,
-        BYSTARTTYPE,
-        BYSERVICETYPE,
-        BYMACHINENAME
+        ByStatus,
+        ByStartType,
+        ByServiceType,
+        ByMachineName,
     }
 }

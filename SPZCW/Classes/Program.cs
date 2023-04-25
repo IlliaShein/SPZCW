@@ -12,14 +12,14 @@ namespace SPZCW
         {
             Services = GetServices();
 
-            MainMenuChartType type = MainMenuChartType.BYSTATUS;
+            MainMenuChartType type = MainMenuChartType.ByStatus;
             while (true)
             {
                 Menu.ProcessMainMenu(type);
 
-                if (type == MainMenuChartType.BYMACHINENAME)
+                if (type == MainMenuChartType.ByMachineName)
                 {
-                    type = MainMenuChartType.BYSTATUS;
+                    type = MainMenuChartType.ByStatus;
                 }
                 else
                 {

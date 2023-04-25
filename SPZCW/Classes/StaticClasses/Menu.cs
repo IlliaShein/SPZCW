@@ -21,16 +21,16 @@ namespace SPZCW
             BreakdownChart chart;
             switch (type)
             {
-                case MainMenuChartType.BYSTATUS:
+                case MainMenuChartType.ByStatus:
                     chart = SpectreConsoleObjects.GetMainMenuChartByStatus();
                     break;
-                case MainMenuChartType.BYSTARTTYPE:
+                case MainMenuChartType.ByStartType:
                     chart = SpectreConsoleObjects.GetMainMenuChartByStartType();
                     break;
-                case MainMenuChartType.BYSERVICETYPE:
+                case MainMenuChartType.ByServiceType:
                     chart = SpectreConsoleObjects.GetMainMenuChartByServiceType();
                     break;
-                case MainMenuChartType.BYMACHINENAME:
+                case MainMenuChartType.ByMachineName:
                     chart = SpectreConsoleObjects.GetMainMenuChartByMachineName();
                     break;
                 default:
@@ -292,6 +292,11 @@ namespace SPZCW
             }
 
             return table;
+        }
+
+        static private Table GetFilteredServices()
+        {
+            throw new NotImplementedException();
         }
     }
 }
