@@ -64,10 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorsTests.cs" />
-    <Compile Include="MessagesTests.cs" />
-    <Compile Include="SpectreConsoleObjectsTests.cs" />
-    <Compile Include="ServiceTests.cs" />
+    <Compile Include="TestsClasses\ColorsTests.cs" />
+    <Compile Include="TestsClasses\FilterSettingsTests.cs" />
+    <Compile Include="TestsClasses\MessagesTests.cs" />
+    <Compile Include="TestsClasses\SpectreConsoleObjectsTests.cs" />
+    <Compile Include="TestsClasses\ServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
