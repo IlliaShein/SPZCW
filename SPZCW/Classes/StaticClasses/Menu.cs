@@ -71,7 +71,7 @@ namespace SPZCW
                 case "Help":
                     ProcessHelpMenu();
                     break;
-                case "[red]Exit[/]":
+                case "[purple]Exit[/]":
                     Environment.Exit(0);
                     break;
             }
@@ -97,7 +97,7 @@ namespace SPZCW
             {
                 var helpMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetHelpMenu());
 
-                if (helpMenuChoise == "[red]Back[/]")
+                if (helpMenuChoise == "[purple]Back[/]")
                 {
                     break;
                 }
@@ -163,7 +163,7 @@ namespace SPZCW
             while(true)
             {
                 var actionsMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetActionsMenu(service));
-                if(actionsMenuChoise == "[red]Back[/]")
+                if(actionsMenuChoise == "[purple]Back[/]")
                 {
                     break;
                 }
@@ -248,7 +248,7 @@ namespace SPZCW
                         case "System":
                             service.ChangeStartType(ServiceStartMode.System);
                             break;
-                        case "[red]Back[/]":
+                        case "[purple]Back[/]":
                             return;
                     }
 

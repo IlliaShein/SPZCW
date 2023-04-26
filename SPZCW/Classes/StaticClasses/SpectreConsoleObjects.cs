@@ -300,7 +300,7 @@ namespace SPZCW
             "Restart",
             "Change start type",
             "Change display name",
-            "[red]Back[/]",
+            "[purple]Back[/]",
             });
         }
 
@@ -313,7 +313,7 @@ namespace SPZCW
             "Disabled",
             "Boot",
             "System",
-            "[red]Back[/]"
+            "[purple]Back[/]"
             });
         }
 
@@ -327,7 +327,7 @@ namespace SPZCW
             "Filter services",
             "Process service",
             "Help",
-            "[red]Exit[/]"
+            "[purple]Exit[/]"
             });
         }
 
@@ -340,7 +340,7 @@ namespace SPZCW
             "Service names",
             "Service start types",
             "Service types",
-            "[red]Back[/]"
+            "[purple]Back[/]"
             });
         }
 
