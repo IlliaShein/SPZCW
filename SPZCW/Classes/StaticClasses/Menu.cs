@@ -149,7 +149,7 @@ namespace SPZCW
         {
             for (int i = 0; i < Program.Services.Length; i++)
             {
-                if (serviceDisplayName == Program.Services[i].GetDisplayName())
+                if (serviceDisplayName == Program.Services[i].DisplayName)
                 {
                     return Program.Services[i];
                 }
@@ -177,37 +177,37 @@ namespace SPZCW
                 case "Stop":
 
                     service.Stop();
-                    Console.WriteLine($"Service \"{service.GetDisplayName()}\" stopped");
+                    Console.WriteLine($"Service \"{service.DisplayName}\" stopped");
 
                     break;
                 case "Start":
 
-                    if (service.GetStartType() == ServiceStartMode.Disabled)
+                    if (service.StartType == ServiceStartMode.Disabled)
                     {
-                        Console.WriteLine($"Service \"{service.GetDisplayName()}\" can not be started because it has \"Disabled\" start mode." +
+                        Console.WriteLine($"Service \"{service.DisplayName}\" can not be started because it has \"Disabled\" start mode." +
                             " Change start mode to start service");
                     }
 
                     service.Start();
-                    Console.WriteLine($"Service \"{service.GetDisplayName()}\" started\n");
+                    Console.WriteLine($"Service \"{service.DisplayName}\" started\n");
 
                     break;
                 case "Restart":
 
-                    if (service.GetStatus() == ServiceControllerStatus.Stopped)
+                    if (service.Status == ServiceControllerStatus.Stopped)
                     {
-                        Console.WriteLine($"Service \"{service.GetDisplayName()}\" is not running\n");
+                        Console.WriteLine($"Service \"{service.DisplayName}\" is not running\n");
                     }
 
                     service.Stop();
                     service.Start();
-                    Console.WriteLine($"Service \"{service.GetDisplayName()}\" restarted\n");
+                    Console.WriteLine($"Service \"{service.DisplayName}\" restarted\n");
 
                     break;
                 case "Change display name":
 
                     Console.Write("New name: ");
-                    string oldName = service.GetDisplayName();
+                    string oldName = service.DisplayName;
                     string newName = Console.ReadLine();
 
                     if (oldName == newName)
@@ -223,9 +223,9 @@ namespace SPZCW
                 case "Change start type":
 
                     string ChangeStartTypeMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetChangeStartTypeMenu());
-                    string oldStartType = service.GetStartType().ToString();
+                    string oldStartType = service.StartType.ToString();
 
-                    if (ChangeStartTypeMenuChoise == service.GetStartType().ToString())
+                    if (ChangeStartTypeMenuChoise == service.StartType.ToString())
                     {
                         Console.WriteLine("It's current service start type");
                         break;
@@ -265,7 +265,7 @@ namespace SPZCW
             foreach (var service in Program.Services)
             {
                 string statusStr = GetStatusStringWithColorNote(service);
-                table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.Path, service.Description, statusStr);
+                table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description, statusStr);
             }
 
             return table;
@@ -287,13 +287,13 @@ namespace SPZCW
 
             foreach (var service in Program.Services)
             {
-                if(filterSettings.Statuses.Contains(service.GetStatus()) && filterSettings.StartModes.Contains(service.GetStartType()))
+                if(filterSettings.Statuses.Contains(service.Status) && filterSettings.StartModes.Contains(service.StartType))
                 {
-                    if((service.GetMachineName() == "." && filterSettings.Locations.Contains(ServiceLocation.LocalHost))
-                    || (service.GetMachineName() != "." && filterSettings.Locations.Contains(ServiceLocation.AnotherDevice)))
+                    if((service.MachineName == "." && filterSettings.Locations.Contains(ServiceLocation.LocalHost))
+                    || (service.MachineName != "." && filterSettings.Locations.Contains(ServiceLocation.AnotherDevice)))
                     {
                         string statusStr = GetStatusStringWithColorNote(service);
-                        table.AddRow(service.GetDisplayName(), service.GetServiceName(), service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.Path, service.Description, statusStr);
+                        table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description, statusStr);
                     }
                 }
             }
@@ -304,17 +304,17 @@ namespace SPZCW
         {
             string statusStr;
 
-            if (service.GetStatus() == ServiceControllerStatus.Stopped)
+            if (service.Status == ServiceControllerStatus.Stopped)
             {
-                statusStr = $"[bold black on red]{service.GetStatus()}[/]";
+                statusStr = $"[bold black on red]{service.Status}[/]";
             }
-            else if (service.GetStatus() == ServiceControllerStatus.Running)
+            else if (service.Status == ServiceControllerStatus.Running)
             {
-                statusStr = $"[bold black on lime]{service.GetStatus()}[/]";
+                statusStr = $"[bold black on lime]{service.Status}[/]";
             }
             else
             {
-                statusStr = $"[bold black on yellow]{service.GetStatus()}[/]";
+                statusStr = $"[bold black on yellow]{service.Status}[/]";
             }
 
             return statusStr;
@@ -325,9 +325,9 @@ namespace SPZCW
 
             foreach (var service in Program.Services)
             {
-                if (service.GetStatus() == status)
+                if (service.Status == status)
                 {
-                    table.AddRow(service.GetDisplayName(), service.GetServiceName() , service.GetMachineName(), service.GetStartType().ToString(), service.GetServiceType().ToString(), service.Path, service.Description);
+                    table.AddRow(service.DisplayName, service.ServiceName , service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description);
                 }
             }
 

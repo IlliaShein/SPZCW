@@ -226,22 +226,22 @@ namespace SPZCWTests
             //Arrange
             var serviceControllerWrapperMock = new Mock<IService>();
             serviceControllerWrapperMock.Setup(x => x.Description).Returns("Description");
-            serviceControllerWrapperMock.Setup(x => x.GetDisplayName()).Returns("DisplayName");
-            serviceControllerWrapperMock.Setup(x => x.GetServiceName()).Returns("ServiceName");
-            serviceControllerWrapperMock.Setup(x => x.GetMachineName()).Returns("MachineName");
-            serviceControllerWrapperMock.Setup(x => x.GetServiceType()).Returns(ServiceType.KernelDriver);
-            serviceControllerWrapperMock.Setup(x => x.GetStartType()).Returns(ServiceStartMode.Automatic);
+            serviceControllerWrapperMock.Setup(x => x.DisplayName).Returns("DisplayName");
+            serviceControllerWrapperMock.Setup(x => x.DisplayName).Returns("ServiceName");
+            serviceControllerWrapperMock.Setup(x => x.DisplayName).Returns("MachineName");
+            serviceControllerWrapperMock.Setup(x => x.ServiceType).Returns(ServiceType.KernelDriver);
+            serviceControllerWrapperMock.Setup(x => x.StartType).Returns(ServiceStartMode.Automatic);
             serviceControllerWrapperMock.Setup(x => x.Path).Returns("Path");
-            serviceControllerWrapperMock.Setup(x => x.GetStatus()).Returns(ServiceControllerStatus.Running);
+            serviceControllerWrapperMock.Setup(x => x.Status).Returns(ServiceControllerStatus.Running);
 
             string description = $"\nDescription  :\t{serviceControllerWrapperMock.Object.Description}\n\r";
-            string displayName = $"DisplayName  :\t{serviceControllerWrapperMock.Object.GetDisplayName()}\n\r";
-            string serviceName = $"ServiceName  :\t{serviceControllerWrapperMock.Object.GetServiceName()}\n\r";
-            string machineName = $"MachineName  :\t{serviceControllerWrapperMock.Object.GetMachineName()}\n\r";
-            string serviceType = $"Service Type :\t{serviceControllerWrapperMock.Object.GetServiceType()}\n\r";
-            string startType = $"Start Type   :\t{serviceControllerWrapperMock.Object.GetStartType()}\n\r";
+            string displayName = $"DisplayName  :\t{serviceControllerWrapperMock.Object.DisplayName}\n\r";
+            string serviceName = $"ServiceName  :\t{serviceControllerWrapperMock.Object.ServiceName}\n\r";
+            string machineName = $"MachineName  :\t{serviceControllerWrapperMock.Object.MachineName}\n\r";
+            string serviceType = $"Service Type :\t{serviceControllerWrapperMock.Object.ServiceType}\n\r";
+            string startType = $"Start Type   :\t{serviceControllerWrapperMock.Object.StartType}\n\r";
             string servicePath = $"Path         :\t{serviceControllerWrapperMock.Object.Path}\n\r";
-            string status = $"Status       :\t{serviceControllerWrapperMock.Object.GetStatus()}\n\r";
+            string status = $"Status       :\t{serviceControllerWrapperMock.Object.Status}\n\r";
 
             string expected = description + displayName + serviceName + machineName + serviceType + servicePath + startType + status;
             //Act

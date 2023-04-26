@@ -20,7 +20,7 @@ namespace SPZCWTests
             var myClass = new Service(serviceControllerWrapperMock.Object);
 
             // Act
-            var actual = myClass.GetDisplayName();
+            var actual = myClass.DisplayName;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -37,7 +37,7 @@ namespace SPZCWTests
             var myClass = new Service(serviceControllerWrapperMock.Object);
 
             // Act
-            var actual = myClass.GetServiceName();
+            var actual = myClass.ServiceName;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -54,7 +54,7 @@ namespace SPZCWTests
             var myClass = new Service(serviceControllerWrapperMock.Object);
 
             // Act
-            var actual = myClass.GetMachineName();
+            var actual = myClass.MachineName;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -71,7 +71,7 @@ namespace SPZCWTests
             var myClass = new Service(serviceControllerWrapperMock.Object);
 
             // Act
-            var actual = myClass.GetStatus();
+            var actual = myClass.Status;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -88,7 +88,7 @@ namespace SPZCWTests
             var myClass = new Service(serviceControllerWrapperMock.Object);
 
             // Act
-            var actual = myClass.GetStartType();
+            var actual = myClass.StartType;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -105,7 +105,7 @@ namespace SPZCWTests
             var myClass = new Service(serviceControllerWrapperMock.Object);
 
             // Act
-            var actual = myClass.GetServiceType();
+            var actual = myClass.ServiceType;
 
             //Assert
             Assert.AreEqual(expected, actual);

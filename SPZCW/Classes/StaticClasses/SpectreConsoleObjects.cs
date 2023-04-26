@@ -351,7 +351,7 @@ namespace SPZCW
 
         static private string GetStartOrStopChoise(IService service)
         {
-            if (service.GetStatus() == ServiceControllerStatus.Stopped)
+            if (service.Status == ServiceControllerStatus.Stopped)
             {
                 return "Start";
             }

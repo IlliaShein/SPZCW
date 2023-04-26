@@ -8,15 +8,32 @@ namespace SPZCW
 {
     public class Service : IService
     {
-        private IServiceController _service { get; set; }
         public string Path { get;}
         public string Description { get; }
+        public string DisplayName { get; private set; }
+        public string ServiceName { get; }
+        public string MachineName { get; }
+        public bool CanStop { get; }
+        public ServiceStartMode StartType { get; private set; }
+        public ServiceType ServiceType { get; }
+        public ServiceControllerStatus Status { get; private set; }
+        private IServiceController _service { get; set; }
 
         public Service(IServiceController service)
         {
             _service = service;
             Path = FindPath();
             Description = FindDescription(service);
+
+            DisplayName = service.DisplayName;
+            ServiceName = service.ServiceName;
+            MachineName = service.MachineName;
+
+            CanStop = service.CanStop;
+
+            StartType = service.StartType;
+            ServiceType = service.ServiceType;
+            Status = service.Status;
         }
 
         public void Start()
@@ -33,6 +50,8 @@ namespace SPZCW
             }
 
             Program.Services = Program.GetServices();
+
+            Status = _service.Status;
         }
 
         public void Stop()
@@ -49,6 +68,8 @@ namespace SPZCW
             }
 
             Program.Services = Program.GetServices();
+
+            Status = _service.Status;
         }
 
         public void Restart()
@@ -66,6 +87,8 @@ namespace SPZCW
             }
 
             Program.Services = Program.GetServices();
+
+            Status = _service.Status;
         }
 
         public void ChangeDisplayName(string newName)
@@ -84,6 +107,8 @@ namespace SPZCW
 
             _service.Refresh();
             Program.Services = Program.GetServices();
+
+            DisplayName = _service.DisplayName;
         }
 
         public void ChangeStartType(ServiceStartMode newMode)
@@ -101,41 +126,8 @@ namespace SPZCW
             
             _service.Refresh();
             Program.Services = Program.GetServices();
-        }
 
-        public string GetDisplayName()
-        {
-            return _service.DisplayName;
-        }
-
-        public string GetMachineName()
-        {
-            return _service.MachineName;
-        }
-
-        public string GetServiceName()
-        {
-            return _service.ServiceName;
-        }
-
-        public ServiceStartMode GetStartType()
-        {
-            return _service.StartType;
-        }
-
-        public ServiceType GetServiceType()
-        {
-            return _service.ServiceType;
-        }
-
-        public bool CanStop()
-        {
-            return _service.CanStop;
-        }
-
-        public ServiceControllerStatus GetStatus()
-        {
-            return _service.Status;
+            StartType = _service.StartType;
         }
 
         private static string FindDescription(IServiceController service)
