@@ -255,6 +255,20 @@ namespace SPZCW
                     Console.WriteLine($"Start type changed: {oldStartType} -> {ChangeStartTypeMenuChoise}");
 
                     break;
+                case "Change description":
+                    Console.Write("New description: ");
+                    string oldDesc = service.Description;
+                    string newDesc = Console.ReadLine();
+
+                    if (oldDesc == newDesc)
+                    {
+                        Console.WriteLine("It's current service description\n");
+                        break;
+                    }
+
+                    service.ChangeDescription(newDesc);
+                    Console.WriteLine($"Service DisplayName changed : {oldDesc} -> {newDesc} ");
+                    break;
             }
         }
 

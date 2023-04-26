@@ -300,6 +300,7 @@ namespace SPZCW
             "Restart",
             "Change start type",
             "Change display name",
+            "Change description",
             "[purple]Back[/]",
             });
         }

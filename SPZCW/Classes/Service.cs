@@ -9,7 +9,7 @@ namespace SPZCW
     public class Service : IService
     {
         public string Path { get;}
-        public string Description { get; }
+        public string Description { get; private set; }
         public string DisplayName { get; private set; }
         public string ServiceName { get; }
         public string MachineName { get; }
@@ -109,6 +109,26 @@ namespace SPZCW
             Program.Services = Program.GetServices();
 
             DisplayName = _service.DisplayName;
+        }
+
+        public void ChangeDescription(string newDescription)
+        {
+            using (var serviceKey = Registry.LocalMachine.OpenSubKey($"SYSTEM\\CurrentControlSet\\Services\\{_service.ServiceName}", true))
+            {
+                if (serviceKey != null)
+                {
+                    serviceKey.SetValue("Description", newDescription);
+                }
+                else
+                {
+                    throw new Exception($"Service \"{_service.ServiceName}\" was not found in the registry.");
+                }
+            }
+
+            _service.Refresh();
+            Program.Services = Program.GetServices();
+
+            Description = FindDescription(_service);
         }
 
         public void ChangeStartType(ServiceStartMode newMode)

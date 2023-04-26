@@ -19,5 +19,6 @@ namespace SPZCW.Interfaces
         void Restart();
         void ChangeDisplayName(string newName);
         void ChangeStartType(ServiceStartMode newMode);
+        void ChangeDescription(string newDescription);
     }
 }
