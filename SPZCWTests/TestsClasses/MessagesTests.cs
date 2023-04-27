@@ -255,13 +255,13 @@ namespace SPZCWTests
         public void TestServicesWithStatusReturnsCorrectValueWithArguments()
         {
             //Arrange
-            string expected1 = "Services with status \"Running\"";
-            string expected2 = "Services with status \"Stopped\"";
-            string expected3 = "Services with status \"Paused\"";
-            string expected4 = "Services with status \"PausePending\"";
-            string expected5 = "Services with status \"StartPending\"";
-            string expected6 = "Services with status \"StopPending\"";
-            string expected7 = "Services with status \"ContinuePending\"";
+            string expected1 = "Services with status \"Running\":";
+            string expected2 = "Services with status \"Stopped\":";
+            string expected3 = "Services with status \"Paused\":";
+            string expected4 = "Services with status \"PausePending\":";
+            string expected5 = "Services with status \"StartPending\":";
+            string expected6 = "Services with status \"StopPending\":";
+            string expected7 = "Services with status \"ContinuePending\":";
 
             //Act
             string actual1 = Messages.ServicesWithStatus(ServiceControllerStatus.Running);

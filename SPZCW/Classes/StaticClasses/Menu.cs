@@ -49,18 +49,13 @@ namespace SPZCW
             switch (mainMenuChoise)
             {
                 case "Active services":
-                    var activeServices = GetActiveServicesTable();
-                    Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Running));
-                    AnsiConsole.Write(activeServices);
+                    ActiveServicesChoiseProcessing();
                     break;
                 case "Stopped services":
-                    var stoppedServices = GetStoppedServicesTable();
-                    Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Stopped));
-                    AnsiConsole.Write(stoppedServices);
+                    StoppedServicesChoiseProcessing();
                     break;
                 case "All services":
-                    var allServices = GetAllServicesTable();
-                    AnsiConsole.Write(allServices);
+                    AllServicesChoiseProcessing();
                     break;
                 case "Filter services":
                     ProcessFilterMenu();
@@ -75,6 +70,27 @@ namespace SPZCW
                     Environment.Exit(0);
                     break;
             }
+        }
+
+        static private void ActiveServicesChoiseProcessing()
+        {
+            var activeServices = GetActiveServicesTable();
+            Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Running));
+            AnsiConsole.Write(activeServices);
+        }
+
+        static private void StoppedServicesChoiseProcessing()
+        {
+            var stoppedServices = GetStoppedServicesTable();
+            Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Stopped));
+            AnsiConsole.Write(stoppedServices);
+        }
+
+        static private void AllServicesChoiseProcessing()
+        {
+            Console.WriteLine("All services:");
+            var allServices = GetAllServicesTable();
+            AnsiConsole.Write(allServices);
         }
 
         static private void ProcessFilterMenu()

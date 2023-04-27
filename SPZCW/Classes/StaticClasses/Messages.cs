@@ -8,7 +8,7 @@ namespace SPZCW.Classes.StaticClasses
     {   
         static public string ServicesWithStatus(ServiceControllerStatus status)
         {
-            return $"Services with status \"{status}\"";
+            return $"Services with status \"{status}\":";
         }
 
         static public string ServiceDescriptionHelp()
