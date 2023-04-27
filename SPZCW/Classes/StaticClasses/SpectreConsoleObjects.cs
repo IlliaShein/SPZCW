@@ -8,6 +8,11 @@ namespace SPZCW
 {
     static public class SpectreConsoleObjects
     {
+        static public Markup Error(string errorMessage)
+        {
+            return new Markup($"\n[red]Error: {errorMessage}[/]\n");
+        }
+
         static public MultiSelectionPrompt<string> GetFilterMenu()
         {
             return new MultiSelectionPrompt<string>()
