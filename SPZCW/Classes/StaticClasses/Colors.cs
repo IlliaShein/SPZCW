@@ -2,37 +2,37 @@
 
 namespace SPZCW.Classes.StaticClasses
 {
-    static public class Colors
+    public static class Colors
     {
-        static public Color ColdGammaColor1()
+        public static Color ColdGammaColor1()
         {
             return new Color(1, 95, 108);
         }
-        static public Color ColdGammaColor2()
+        public static Color ColdGammaColor2()
         {
             return new Color(73, 217, 236);
         }
-        static public Color ColdGammaColor3()
+        public static Color ColdGammaColor3()
         {
             return new Color(2, 205, 232);
         }
-        static public Color ColdGammaColor4()
+        public static Color ColdGammaColor4()
         {
             return new Color(32, 96, 105);
         }
-        static public Color ColdGammaColor5()
+        public static Color ColdGammaColor5()
         {
             return new Color(17, 167, 218);
         }
-        static public Color ColdGammaColor6()
+        public static Color ColdGammaColor6()
         {
             return new Color(160, 217, 236);
         }
-        static public Color ColdGammaColor7()
+        public static Color ColdGammaColor7()
         {
             return new Color(0, 179, 212);
         }
-        static public Color ColdGammaColor8()
+        public static Color ColdGammaColor8()
         {
             return new Color(56, 150, 179);
         }

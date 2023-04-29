@@ -6,14 +6,14 @@ using System.ServiceProcess;
 
 namespace SPZCW
 {
-    static public class SpectreConsoleObjects
+    public static class SpectreConsoleObjects
     {
-        static public Markup Error(string errorMessage)
+        public static Markup Error(string errorMessage)
         {
             return new Markup($"\n[red]Error: {errorMessage}[/]\n");
         }
 
-        static public MultiSelectionPrompt<string> GetFilterMenu()
+        public static MultiSelectionPrompt<string> GetFilterMenu()
         {
             return new MultiSelectionPrompt<string>()
                             .PageSize(15)
@@ -25,7 +25,7 @@ namespace SPZCW
                                 "Localhost" , "Another device"})
                             .AddChoiceGroup("Back", new string[] { });
         }
-        static public Tree GetServicePathTree(string path)
+        public static Tree GetServicePathTree(string path)
         {
             string[] splittedPath = path.Split('\\');
 
@@ -92,7 +92,7 @@ namespace SPZCW
 
             return pathRoot;
         }
-        static public BreakdownChart GetMainMenuChartByStatus()
+        public static BreakdownChart GetMainMenuChartByStatus()
         {
             ServiceController[] services = ServiceController.GetServices();
 
@@ -128,7 +128,7 @@ namespace SPZCW
                     .AddItem("Other", otherPercentage, Colors.ColdGammaColor2());
         }
 
-        static public BreakdownChart GetMainMenuChartByStartType()
+        public static BreakdownChart GetMainMenuChartByStartType()
         {
             ServiceController[] services = ServiceController.GetServices();
 
@@ -179,7 +179,7 @@ namespace SPZCW
 
         }
 
-        static public BreakdownChart GetMainMenuChartByServiceType()
+        public static BreakdownChart GetMainMenuChartByServiceType()
         {
             ServiceController[] services = ServiceController.GetServices();
 
@@ -250,7 +250,7 @@ namespace SPZCW
                     .AddItem("Other", otherPercentage, Colors.ColdGammaColor5());
         }
 
-        static public BreakdownChart GetMainMenuChartByMachineName()
+        public static BreakdownChart GetMainMenuChartByMachineName()
         {
             ServiceController[] services = ServiceController.GetServices();
 
@@ -279,7 +279,7 @@ namespace SPZCW
                     .AddItem("Other", otherPercentage, Colors.ColdGammaColor6());
         }
 
-        static public Table GetServicesTable(bool addStatusColumn)
+        public static Table GetServicesTable(bool addStatusColumn)
         {
             Table table = new Table();
 
@@ -297,7 +297,7 @@ namespace SPZCW
 
             return table;
         }
-        static public SelectionPrompt<string> GetActionsMenu(IService service)
+        public static SelectionPrompt<string> GetActionsMenu(IService service)
         {
             return new SelectionPrompt<string>().AddChoices(new[]
             {
@@ -310,7 +310,7 @@ namespace SPZCW
             });
         }
 
-        static public SelectionPrompt<string> GetChangeStartTypeMenu()
+        public static SelectionPrompt<string> GetChangeStartTypeMenu()
         {
             return new SelectionPrompt<string>().AddChoices(new[]
             {
@@ -323,7 +323,7 @@ namespace SPZCW
             });
         }
 
-        static public SelectionPrompt<string> GetMainMenu()
+        public static SelectionPrompt<string> GetMainMenu()
         {
             return new SelectionPrompt<string>().AddChoices(new[]
             {
@@ -337,7 +337,7 @@ namespace SPZCW
             });
         }
 
-        static public SelectionPrompt<string> GetHelpMenu()
+        public static SelectionPrompt<string> GetHelpMenu()
         {
             return new SelectionPrompt<string>().AddChoices(new[]
            {
@@ -350,12 +350,12 @@ namespace SPZCW
             });
         }
 
-        static public FigletText GetTitle()
+        public static FigletText GetTitle()
         {
             return new FigletText("SPZCW").LeftJustified().Centered();
         }
 
-        static private string GetStartOrStopChoise(IService service)
+        private static string GetStartOrStopChoise(IService service)
         {
             if (service.Status == ServiceControllerStatus.Stopped)
             {

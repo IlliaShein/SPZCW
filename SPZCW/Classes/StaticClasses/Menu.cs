@@ -10,14 +10,14 @@ namespace SPZCW
 {
     static class Menu
     {
-        static public void ProcessMainMenu(MainMenuChartType type)
+        public static void ProcessMainMenu(MainMenuChartType type)
         {
             ProcessTitleAndBar(type);
             var mainMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetMainMenu());
             MainMenuChoiseProcessing(mainMenuChoise);
         }
 
-        static private void ProcessTitleAndBar(MainMenuChartType type)
+        private static void ProcessTitleAndBar(MainMenuChartType type)
         {
             BreakdownChart chart;
             switch (type)
@@ -43,7 +43,7 @@ namespace SPZCW
             Console.WriteLine("\n");
         }
 
-        static private void MainMenuChoiseProcessing(string mainMenuChoise)
+        private static void MainMenuChoiseProcessing(string mainMenuChoise)
         {
             switch (mainMenuChoise)
             {
@@ -71,28 +71,28 @@ namespace SPZCW
             }
         }
 
-        static private void ActiveServicesChoiseProcessing()
+        private static void ActiveServicesChoiseProcessing()
         {
             Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Running));
             var activeServices = Tables.GetServicesTableByStatus(ServiceControllerStatus.Running);
             AnsiConsole.Write(activeServices);
         }
 
-        static private void StoppedServicesChoiseProcessing()
+        private static void StoppedServicesChoiseProcessing()
         {
             Console.WriteLine(Messages.ServicesWithStatus(ServiceControllerStatus.Stopped));
             var stoppedServices = Tables.GetServicesTableByStatus(ServiceControllerStatus.Stopped);
             AnsiConsole.Write(stoppedServices);
         }
 
-        static private void AllServicesChoiseProcessing()
+        private static void AllServicesChoiseProcessing()
         {
             Console.WriteLine("All services:");
             var allServices = Tables.GetAllServicesTable();
             AnsiConsole.Write(allServices);
         }
 
-        static private void FilterChoisePocessing()
+        private static void FilterChoisePocessing()
         {
             var filterMenuChoises = AnsiConsole.Prompt(SpectreConsoleObjects.GetFilterMenu());
             if(filterMenuChoises.Contains("Back"))
@@ -106,7 +106,7 @@ namespace SPZCW
             AnsiConsole.Write(filteredTable);
         }
 
-        static private void ProcessServiceChoiseProcessing()
+        private static void ProcessServiceChoiseProcessing()
         {
             IService service;
             try
@@ -126,7 +126,7 @@ namespace SPZCW
             ServiceActionsMenuProcessing(service);
         }
 
-        static private IService GetServiceViaInput()
+        private static IService GetServiceViaInput()
         {
             Console.Write("\nService DisplayName: ");
             string serviceDisplayName = Console.ReadLine();
@@ -140,7 +140,7 @@ namespace SPZCW
             return service;
         }
 
-        static private IService FindService(string serviceDisplayName)
+        private static IService FindService(string serviceDisplayName)
         {
             for (int i = 0; i < Program.Services.Length; i++)
             {
@@ -153,7 +153,7 @@ namespace SPZCW
             return null;
         }
 
-        static private void ServiceActionsMenuProcessing(IService service)
+        private static void ServiceActionsMenuProcessing(IService service)
         {
             while (true)
             {
@@ -166,7 +166,7 @@ namespace SPZCW
             }
         }
 
-        static private void ServiceActionsMenuChoiseProcessing(IService service, string actionsMenuChoise)
+        private static void ServiceActionsMenuChoiseProcessing(IService service, string actionsMenuChoise)
         {
             try
             {
@@ -197,7 +197,7 @@ namespace SPZCW
                 AnsiConsole.Write(SpectreConsoleObjects.Error(ex.Message));
             }
         }
-        static private void StopChoiseProcessing(IService service)
+        private static void StopChoiseProcessing(IService service)
         {
             try
             {
@@ -211,7 +211,7 @@ namespace SPZCW
             Console.WriteLine($"Service \"{service.DisplayName}\" stopped");
         }
 
-        static private void StartChoiseProcessing(IService service)
+        private static void StartChoiseProcessing(IService service)
         {
             if (service.StartType == ServiceStartMode.Disabled)
             {
@@ -223,7 +223,7 @@ namespace SPZCW
             Console.WriteLine($"Service \"{service.DisplayName}\" started\n");
         }
 
-        static private void RestartChoiseProcessing(IService service)
+        private static void RestartChoiseProcessing(IService service)
         {
             if (service.Status == ServiceControllerStatus.Stopped)
             {
@@ -235,7 +235,7 @@ namespace SPZCW
             Console.WriteLine($"Service \"{service.DisplayName}\" restarted\n");
         }
 
-        static public void ChangeDisplayNameChoiseProcessing(IService service)
+        public static void ChangeDisplayNameChoiseProcessing(IService service)
         {
             Console.Write("New name: ");
             string oldName = service.DisplayName;
@@ -258,7 +258,7 @@ namespace SPZCW
             Console.WriteLine($"Service DisplayName changed : {oldName} -> {newName} ");
         }
 
-        static private void ChangeStartTypeChoiseProcession(IService service)
+        private static void ChangeStartTypeChoiseProcession(IService service)
         {
             string ChangeStartTypeMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetChangeStartTypeMenu());
             string oldStartType = service.StartType.ToString();
@@ -280,7 +280,7 @@ namespace SPZCW
             Console.WriteLine($"Start type changed: {oldStartType} -> {ChangeStartTypeMenuChoise}");
         }
 
-        static private void ChangeStartTypeMenuChoiseProcession(IService service , string ChangeStartTypeMenuChoise)
+        private static void ChangeStartTypeMenuChoiseProcession(IService service , string ChangeStartTypeMenuChoise)
         {
             try
             {
@@ -311,7 +311,7 @@ namespace SPZCW
             }
         }
 
-        static private void ChangeDescriptionChoiseProcession(IService service)
+        private static void ChangeDescriptionChoiseProcession(IService service)
         {
             Console.Write("New description: ");
             string newDesc = Console.ReadLine();
@@ -333,7 +333,7 @@ namespace SPZCW
 
             Console.WriteLine($"Service DisplayName changed : {oldDesc} -> {newDesc} ");
         }
-        static private void HelpChoiseProcessing()
+        private static void HelpChoiseProcessing()
         {
             while (true)
             {
@@ -347,7 +347,7 @@ namespace SPZCW
             }
         }
 
-        static private void helpMenuChoiseProcessing(string helpMenuChoise)
+        private static void helpMenuChoiseProcessing(string helpMenuChoise)
         {
             switch (helpMenuChoise)
             {

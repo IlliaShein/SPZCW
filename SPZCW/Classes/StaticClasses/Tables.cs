@@ -5,9 +5,9 @@ using System.ServiceProcess;
 
 namespace SPZCW.Classes.StaticClasses
 {
-    static public class Tables
+    public static class Tables
     {
-        static public Table GetFilteredServicesTable(IFilterSettings filterSettings)
+        public static Table GetFilteredServicesTable(IFilterSettings filterSettings)
         {
             Table table = SpectreConsoleObjects.GetServicesTable(true);
 
@@ -27,7 +27,7 @@ namespace SPZCW.Classes.StaticClasses
             return table;
         }
 
-        static public Table GetServicesTableByStatus(ServiceControllerStatus status)
+        public static Table GetServicesTableByStatus(ServiceControllerStatus status)
         {
             var table = SpectreConsoleObjects.GetServicesTable(false);
 
@@ -41,7 +41,7 @@ namespace SPZCW.Classes.StaticClasses
 
             return table;
         }
-        static public Table GetAllServicesTable()
+        public static Table GetAllServicesTable()
         {
             var table = SpectreConsoleObjects.GetServicesTable(true);
 
@@ -54,7 +54,7 @@ namespace SPZCW.Classes.StaticClasses
             return table;
         }
 
-        static private string GetStatusStringWithColorNote(IService service)
+        private static string GetStatusStringWithColorNote(IService service)
         {
             string statusStr;
             string color;

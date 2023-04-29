@@ -4,20 +4,20 @@ using System.ServiceProcess;
 
 namespace SPZCW.Classes.StaticClasses
 {
-    static public class Messages
+    public static class Messages
     {   
-        static public string ServicesWithStatus(ServiceControllerStatus status)
+        public static string ServicesWithStatus(ServiceControllerStatus status)
         {
             return $"Services with status \"{status}\":";
         }
 
-        static public string ServiceDescriptionHelp()
+        public static string ServiceDescriptionHelp()
         {
             return "This program is designed to provide an intuitive and user-friendly interface for" +
                 " managing Windows services.\n\n\r";
         }
 
-        static public string ServiceTypesHelp()
+        public static string ServiceTypesHelp()
         {
             string introduction = "";
             string kernelDriver = "[cyan1]Kernel Driver[/]: these are services that run in the context of the operating system " +
@@ -45,7 +45,7 @@ namespace SPZCW.Classes.StaticClasses
             return introduction + kernelDriver + fileSystemDriver + adapter + interractiveProcess + recognizedDriver + win32OwnProcess + win32ShareProcess;
         }
 
-        static public string ServiceNamesHelp()
+        public static string ServiceNamesHelp()
         {
             string introduction = "[bold]Each service is identified by a unique name, which consists of three components: " +
                 "the service name, the display name, and the machine name.[/]\n\n\r";
@@ -62,7 +62,7 @@ namespace SPZCW.Classes.StaticClasses
             return introduction + displayName + serviceName + machineName;
         }
 
-        static public string ServiceStatusHelp()
+        public static string ServiceStatusHelp()
         {
             string introduction = "[bold]In Windows operating system, services are background processes that" +
                 " can be started automatically when the system boots up or manually by a user or another application." +
@@ -92,7 +92,7 @@ namespace SPZCW.Classes.StaticClasses
             return introduction + stopped + startPending + StopPending + running + continuePending + pausePending + paused;
         }
 
-        static public string ServiceStartTypesHelp()
+        public static string ServiceStartTypesHelp()
         {
             string introduction = "[bold]In Windows operating systems, a service is a program that runs in the background and" +
                 " performs various tasks, such as managing network connections, printing documents, or providing " +
@@ -119,7 +119,7 @@ namespace SPZCW.Classes.StaticClasses
 
             return introduction + automatic + manual + disabled + boot + system;
         }
-        static public string ServiceInfo(IService service)
+        public static string ServiceInfo(IService service)
         {
             string description = $"\nDescription  :\t{service.Description}\n\r";
             string displayName = $"DisplayName  :\t{service.DisplayName}\n\r";

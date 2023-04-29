@@ -7,7 +7,7 @@ namespace SPZCW
 {
     public class Program
     {
-        static public IService[] Services { get; set; }
+        public static IService[] Services { get; set; }
         static void Main(string[] args)
         {
             Services = GetServices();
@@ -28,7 +28,7 @@ namespace SPZCW
             }
         }
 
-        static public IService [] GetServices()
+        public static IService [] GetServices()
         {
             ServiceController[] services = ServiceController.GetServices();
             IService[] Services = new Service[services.Length];
