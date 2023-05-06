@@ -7,6 +7,34 @@ namespace SPZCW.Classes.StaticClasses
 {
     public static class Tables
     {
+        public static Table GetAllServicesTable()
+        {
+            var table = GetServicesTable(true);
+
+            foreach (var service in Program.Services)
+            {
+                string statusStr = GetStatusStringWithColorNote(service);
+                table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description, statusStr);
+            }
+
+            return table;
+        }
+
+        public static Table GetServicesTableByStatus(ServiceControllerStatus status)
+        {
+            var table = GetServicesTable(false);
+
+            foreach (var service in Program.Services)
+            {
+                if (service.Status == status)
+                {
+                    table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description);
+                }
+            }
+
+            return table;
+        }
+
         public static Table GetFilteredServicesTable(IFilterSettings filterSettings)
         {
             Table table = GetServicesTable(true);
@@ -27,34 +55,7 @@ namespace SPZCW.Classes.StaticClasses
             return table;
         }
 
-        public static Table GetServicesTableByStatus(ServiceControllerStatus status)
-        {
-            var table = GetServicesTable(false);
-
-            foreach (var service in Program.Services)
-            {
-                if (service.Status == status)
-                {
-                    table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description);
-                }
-            }
-
-            return table;
-        }
-        public static Table GetAllServicesTable()
-        {
-            var table = GetServicesTable(true);
-
-            foreach (var service in Program.Services)
-            {
-                string statusStr = GetStatusStringWithColorNote(service);
-                table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description, statusStr);
-            }
-
-            return table;
-        }
-
-        public static Table GetServicesTable(bool addStatusColumn)
+        private static Table GetServicesTable(bool addStatusColumn)
         {
             Table table = new Table();
 

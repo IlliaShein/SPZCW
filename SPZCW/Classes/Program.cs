@@ -7,11 +7,9 @@ namespace SPZCW
 {
     public class Program
     {
-        public static IService[] Services { get; set; }
+        public static IService[] Services { get; set; } = GetServices();
         static void Main(string[] args)
         {
-            Services = GetServices();
-
             MainMenuChartType type = MainMenuChartType.ByStatus;
             while (true)
             {
