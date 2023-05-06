@@ -119,10 +119,6 @@ namespace SPZCW
                 return;
             }
 
-            Console.WriteLine();
-            AnsiConsole.Write(SpectreConsoleObjects.GetServicePathTree(service.Path));
-            Console.WriteLine(Messages.ServiceInfo(service));
-
             ServiceActionsMenuProcessing(service);
         }
 
@@ -157,16 +153,25 @@ namespace SPZCW
         {
             while (true)
             {
+                Console.WriteLine();
+                AnsiConsole.Write(SpectreConsoleObjects.GetServicePathTree(service.Path));
+                Console.WriteLine(Messages.ServiceInfo(service));
+
                 var actionsMenuChoise = AnsiConsole.Prompt(Menues.GetActionsMenu(service));
                 if (actionsMenuChoise == "[purple]Back[/]")
                 {
                     break;
                 }
-                ServiceActionsMenuChoiseProcessing(service, actionsMenuChoise);
+                ServiceActionsMenuChoiseProcessing(ref service, actionsMenuChoise);
+
+                if(actionsMenuChoise != "Change display name")
+                {
+                    service = FindService(service.DisplayName);
+                }
             }
         }
 
-        private static void ServiceActionsMenuChoiseProcessing(IService service, string actionsMenuChoise)
+        private static void ServiceActionsMenuChoiseProcessing(ref IService service, string actionsMenuChoise)
         {
             try
             {
@@ -182,7 +187,7 @@ namespace SPZCW
                         RestartChoiseProcessing(service);
                         break;
                     case "Change display name":
-                        ChangeDisplayNameChoiseProcessing(service);
+                        ChangeDisplayNameChoiseProcessing(ref service);
                         break;
                     case "Change start type":
                         ChangeStartTypeChoiseProcession(service);
@@ -235,7 +240,7 @@ namespace SPZCW
             Console.WriteLine($"Service \"{service.DisplayName}\" restarted\n");
         }
 
-        public static void ChangeDisplayNameChoiseProcessing(IService service)
+        public static void ChangeDisplayNameChoiseProcessing(ref IService service)
         {
             Console.Write("New name: ");
             string oldName = service.DisplayName;
@@ -255,6 +260,7 @@ namespace SPZCW
                 throw new Exception(ex.Message);
             }
 
+            service = FindService(newName);
             Console.WriteLine($"Service DisplayName changed : {oldName} -> {newName} ");
         }
 

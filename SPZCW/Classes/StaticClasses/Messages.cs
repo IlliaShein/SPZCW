@@ -131,6 +131,7 @@ namespace SPZCW.Classes.StaticClasses
         }
         public static string ServiceInfo(IService service)
         {
+
             string description = $"\nDescription  :\t{service.Description}\n\r";
             string displayName = $"DisplayName  :\t{service.DisplayName}\n\r";
             string serviceName = $"ServiceName  :\t{service.ServiceName}\n\r";
