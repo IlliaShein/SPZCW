@@ -9,7 +9,7 @@ namespace SPZCW.Classes.StaticClasses
     {
         public static Table GetFilteredServicesTable(IFilterSettings filterSettings)
         {
-            Table table = SpectreConsoleObjects.GetServicesTable(true);
+            Table table = GetServicesTable(true);
 
             foreach (var service in Program.Services)
             {
@@ -29,7 +29,7 @@ namespace SPZCW.Classes.StaticClasses
 
         public static Table GetServicesTableByStatus(ServiceControllerStatus status)
         {
-            var table = SpectreConsoleObjects.GetServicesTable(false);
+            var table = GetServicesTable(false);
 
             foreach (var service in Program.Services)
             {
@@ -43,12 +43,31 @@ namespace SPZCW.Classes.StaticClasses
         }
         public static Table GetAllServicesTable()
         {
-            var table = SpectreConsoleObjects.GetServicesTable(true);
+            var table = GetServicesTable(true);
 
             foreach (var service in Program.Services)
             {
                 string statusStr = GetStatusStringWithColorNote(service);
                 table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description, statusStr);
+            }
+
+            return table;
+        }
+
+        public static Table GetServicesTable(bool addStatusColumn)
+        {
+            Table table = new Table();
+
+            table.AddColumn("DisplayName");
+            table.AddColumn(new TableColumn("ServiceName"));
+            table.AddColumn(new TableColumn("MachineName"));
+            table.AddColumn(new TableColumn("Start type"));
+            table.AddColumn(new TableColumn("ServiceType"));
+            table.AddColumn(new TableColumn("Path"));
+            table.AddColumn(new TableColumn("Description"));
+            if (addStatusColumn)
+            {
+                table.AddColumn(new TableColumn("Status").Centered());
             }
 
             return table;

@@ -13,7 +13,7 @@ namespace SPZCW
         public static void ProcessMainMenu(MainMenuChartType type)
         {
             ProcessTitleAndBar(type);
-            var mainMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetMainMenu());
+            var mainMenuChoise = AnsiConsole.Prompt(Menues.GetMainMenu());
             MainMenuChoiseProcessing(mainMenuChoise);
         }
 
@@ -94,7 +94,7 @@ namespace SPZCW
 
         private static void FilterChoisePocessing()
         {
-            var filterMenuChoises = AnsiConsole.Prompt(SpectreConsoleObjects.GetFilterMenu());
+            var filterMenuChoises = AnsiConsole.Prompt(Menues.GetFilterMenu());
             if(filterMenuChoises.Contains("Back"))
             {
                 return;
@@ -157,7 +157,7 @@ namespace SPZCW
         {
             while (true)
             {
-                var actionsMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetActionsMenu(service));
+                var actionsMenuChoise = AnsiConsole.Prompt(Menues.GetActionsMenu(service));
                 if (actionsMenuChoise == "[purple]Back[/]")
                 {
                     break;
@@ -260,7 +260,7 @@ namespace SPZCW
 
         private static void ChangeStartTypeChoiseProcession(IService service)
         {
-            string ChangeStartTypeMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetChangeStartTypeMenu());
+            string ChangeStartTypeMenuChoise = AnsiConsole.Prompt(Menues.GetChangeStartTypeMenu());
             string oldStartType = service.StartType.ToString();
 
             if (ChangeStartTypeMenuChoise == oldStartType)
@@ -337,7 +337,7 @@ namespace SPZCW
         {
             while (true)
             {
-                var helpMenuChoise = AnsiConsole.Prompt(SpectreConsoleObjects.GetHelpMenu());
+                var helpMenuChoise = AnsiConsole.Prompt(Menues.GetHelpMenu());
 
                 if (helpMenuChoise == "[purple]Back[/]")
                 {
