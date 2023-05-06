@@ -38,6 +38,7 @@ namespace SPZCW
                 ServiceControllerWrapper SCwrapper = new ServiceControllerWrapper(services[i]);
                 Services[i] = new Service(SCwrapper);
             }
+
             return Services;
         }
     }

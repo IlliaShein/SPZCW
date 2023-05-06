@@ -62,7 +62,7 @@ namespace SPZCW.Classes
             {
                 StartModes.Add(ServiceStartMode.System);
             }
-            if (choise == "Localhost") // Checking if choise is Location 
+            else if (choise == "Localhost") // Checking if choise is Location 
             {
                 Locations.Add(ServiceLocation.LocalHost);
             }

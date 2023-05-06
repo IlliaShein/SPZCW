@@ -23,16 +23,16 @@ namespace SPZCW
             switch (type)
             {
                 case MainMenuChartType.ByStatus:
-                    chart = SpectreConsoleObjects.GetMainMenuChartByStatus();
+                    chart = MainMenuChart.GetMainMenuChartByStatus();
                     break;
                 case MainMenuChartType.ByStartType:
-                    chart = SpectreConsoleObjects.GetMainMenuChartByStartType();
+                    chart = MainMenuChart.GetMainMenuChartByStartType();
                     break;
                 case MainMenuChartType.ByServiceType:
-                    chart = SpectreConsoleObjects.GetMainMenuChartByServiceType();
+                    chart = MainMenuChart.GetMainMenuChartByServiceType();
                     break;
                 case MainMenuChartType.ByMachineName:
-                    chart = SpectreConsoleObjects.GetMainMenuChartByMachineName();
+                    chart = MainMenuChart.GetMainMenuChartByMachineName();
                     break;
                 default:
                     throw new ArgumentException($"non-existent type: {type}");

@@ -29,11 +29,50 @@ namespace SPZCW
             ServiceName = service.ServiceName;
             MachineName = service.MachineName;
 
-            CanStop = service.CanStop;
-
             StartType = service.StartType;
             ServiceType = service.ServiceType;
             Status = service.Status;
+        }
+
+        private string FindPath()
+        {
+            ManagementObject wmiService = new ManagementObject("Win32_Service.Name='" + _service.ServiceName + "'");
+
+            try
+            {
+                if (wmiService["PathName"] == null)
+                {
+                    return "";
+                }
+                wmiService.Get();
+                return wmiService["PathName"].ToString();
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        private static string FindDescription(IServiceController service)
+        {
+            string description = "";
+            ManagementObject serviceObject = new ManagementObject(new ManagementPath(string.Format("Win32_Service.Name='{0}'", service.ServiceName)));
+
+            try
+            {
+                if (serviceObject["Description"] == null)
+                {
+                    description = "-";
+                    return description;
+                }
+                description = serviceObject["Description"].ToString();
+                return description;
+            }
+            catch (Exception)
+            {
+                description = "-";
+                return description;
+            }
         }
 
         public void Start()
@@ -50,8 +89,6 @@ namespace SPZCW
             }
 
             Program.Services = Program.GetServices();
-
-            Status = _service.Status;
         }
 
         public void Stop()
@@ -68,8 +105,6 @@ namespace SPZCW
             }
 
             Program.Services = Program.GetServices();
-
-            Status = _service.Status;
         }
 
         public void Restart()
@@ -87,8 +122,6 @@ namespace SPZCW
             }
 
             Program.Services = Program.GetServices();
-
-            Status = _service.Status;
         }
 
         public void ChangeDisplayName(string newName)
@@ -107,8 +140,6 @@ namespace SPZCW
 
             _service.Refresh();
             Program.Services = Program.GetServices();
-
-            DisplayName = _service.DisplayName;
         }
 
         public void ChangeDescription(string newDescription)
@@ -146,49 +177,6 @@ namespace SPZCW
             
             _service.Refresh();
             Program.Services = Program.GetServices();
-
-            StartType = _service.StartType;
-        }
-
-        private static string FindDescription(IServiceController service)
-        {
-            string description = "";
-            ManagementObject serviceObject = new ManagementObject(new ManagementPath(string.Format("Win32_Service.Name='{0}'", service.ServiceName)));
-
-            try
-            {
-                if(serviceObject["Description"] == null)
-                {
-                    description = "-";
-                    return description;
-                }
-                description = serviceObject["Description"].ToString();
-                return description;
-            }
-            catch (Exception)
-            {
-                description = "-";
-                return description;
-            }
-        }
-
-        private string FindPath()
-        {
-            ManagementObject wmiService = new ManagementObject("Win32_Service.Name='" + _service.ServiceName + "'");
-
-            try
-            {
-                if(wmiService["PathName"] == null)
-                {
-                    return "";
-                }
-                wmiService.Get();
-                return wmiService["PathName"].ToString();
-            }
-            catch (Exception)
-            {
-                return "";
-            }
         }
     }
 }

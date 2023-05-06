@@ -39,30 +39,6 @@ namespace SPZCWTests
         }
 
         [TestMethod]
-        public void TestGetMainMenuChartByStatusReturnsNotNull()
-        {
-            Assert.IsNotNull(SpectreConsoleObjects.GetMainMenuChartByStatus());
-        }
-
-        [TestMethod]
-        public void TestGetMainMenuChartByStartTypeReturnsNotNull()
-        {
-            Assert.IsNotNull(SpectreConsoleObjects.GetMainMenuChartByStartType());
-        }
-
-        [TestMethod]
-        public void TestGetMainMenuChartByServiceTypeReturnsNotNull()
-        {
-            Assert.IsNotNull(SpectreConsoleObjects.GetMainMenuChartByServiceType());
-        }
-
-        [TestMethod]
-        public void TestGetMainMenuChartByMachineNameReturnsNotNull()
-        {
-            Assert.IsNotNull(SpectreConsoleObjects.GetMainMenuChartByMachineName());
-        }
-
-        [TestMethod]
         public void TestGetServicesTableReturnsNotNull()
         {
             Assert.IsNotNull(SpectreConsoleObjects.GetServicesTable(true));

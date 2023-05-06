@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="TestsClasses\ColorsTests.cs" />
     <Compile Include="TestsClasses\FilterSettingsTests.cs" />
+    <Compile Include="TestsClasses\MainMenuChartTests.cs" />
     <Compile Include="TestsClasses\MessagesTests.cs" />
     <Compile Include="TestsClasses\SpectreConsoleObjectsTests.cs" />
     <Compile Include="TestsClasses\ServiceTests.cs" />
