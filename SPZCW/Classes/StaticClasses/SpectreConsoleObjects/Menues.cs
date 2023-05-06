@@ -6,6 +6,20 @@ namespace SPZCW.Classes.StaticClasses
 {
     public static class Menues
     {
+        public static SelectionPrompt<string> GetMainMenu()
+        {
+            return new SelectionPrompt<string>().AddChoices(new[]
+            {
+            "Active services",
+            "Stopped services",
+            "All services",
+            "Filter services",
+            "Process service",
+            "Help",
+            "[purple]Exit[/]"
+            });
+        }
+
         public static MultiSelectionPrompt<string> GetFilterMenu()
         {
             return new MultiSelectionPrompt<string>()
@@ -53,20 +67,6 @@ namespace SPZCW.Classes.StaticClasses
             "Boot",
             "System",
             "[purple]Back[/]"
-            });
-        }
-
-        public static SelectionPrompt<string> GetMainMenu()
-        {
-            return new SelectionPrompt<string>().AddChoices(new[]
-            {
-            "Active services",
-            "Stopped services",
-            "All services",
-            "Filter services",
-            "Process service",
-            "Help",
-            "[purple]Exit[/]"
             });
         }
 

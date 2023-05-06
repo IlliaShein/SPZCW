@@ -13,13 +13,23 @@ namespace SPZCW.Classes.StaticClasses
 
         public static string ServiceDescriptionHelp()
         {
-            return "This program is designed to provide an intuitive and user-friendly interface for" +
-                " managing Windows services.\n\n\r";
+            string introduction = "[bald]This program is designed to provide an intuitive and user-friendly interface for" +
+                " managing Windows services.[/]\n\n\r";
+            string mainText = "You can view information about running, stopped and services with any status using buttons" +
+                " \"Active services\", \"Stopped services\" and \"All services\" respectively. If you need to search for other" +
+                " criteria, or more of them, you can use the \"Filter services\" button. To change a service, you need to find" +
+                " it by display name via the \"Process service\" button. After that, you will see detailed information about the" +
+                " found service and you will be able to perform certain actions with it (start/stop (depending on the current state)," +
+                " restart, change display name, change description, change service type). Please note that some services cannot be" +
+                " stopped, this is indicated in the description to them after the search. Enjoy using the program.\n\n\r";
+
+            return introduction + mainText;
         }
 
         public static string ServiceTypesHelp()
         {
-            string introduction = "";
+            string introduction = "[bold]In Windows operating systems, services are classified into several" +
+                "types based on how they interact with the system and what resources they manage.[/]\n\n\r";
             string kernelDriver = "[cyan1]Kernel Driver[/]: these are services that run in the context of the operating system " +
                 "kernel and provide access to hardware or other resources that require low-level control. " +
                 "Examples include device drivers for devices such as sound cards, video cards, or network adapters.\n\n\r";
