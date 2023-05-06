@@ -4,37 +4,37 @@ namespace SPZCW.Classes.StaticClasses
 {
     public static class Colors
     {
-        public static Color ColdGammaColor1()
+        public static Color Color1()
         {
-            return new Color(1, 95, 108);
+            return new Color(200, 50, 50);
         }
-        public static Color ColdGammaColor2()
+        public static Color Color2()
         {
-            return new Color(73, 217, 236);
+            return new Color(50, 200, 50);
         }
-        public static Color ColdGammaColor3()
+        public static Color Color3()
         {
-            return new Color(2, 205, 232);
+            return new Color(50, 50, 200);
         }
-        public static Color ColdGammaColor4()
+        public static Color Color4()
         {
-            return new Color(32, 96, 105);
+            return new Color(200, 200, 50);
         }
-        public static Color ColdGammaColor5()
+        public static Color Color5()
         {
-            return new Color(17, 167, 218);
+            return new Color(200, 50, 200);
         }
-        public static Color ColdGammaColor6()
+        public static Color Color6()
         {
-            return new Color(160, 217, 236);
+            return new Color(50, 200, 200);
         }
-        public static Color ColdGammaColor7()
+        public static Color Color7()
         {
-            return new Color(0, 179, 212);
+            return new Color(155, 50, 155);
         }
-        public static Color ColdGammaColor8()
+        public static Color Color8()
         {
-            return new Color(56, 150, 179);
+            return new Color(60, 32, 200);
         }
     }
 }

@@ -8,104 +8,104 @@ namespace SPZCWTests
     public class ColorsTests
     {
         [TestMethod]
-        public void TestColdGammaColor1ReturnsCorrectValue()
+        public void TestColor1ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(1, 95, 108);
+            var expected = new Color(200, 50, 50);
 
             //Act
-            var actual = Colors.ColdGammaColor1();
+            var actual = Colors.Color1();
 
             //Assert
             Assert.AreEqual(expected,actual);
         }
 
         [TestMethod]
-        public void TestColdGammaColor2ReturnsCorrectValue()
+        public void TestColor2ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(73, 217, 236);
+            var expected = new Color(50, 200, 50);
 
             //Act
-            var actual = Colors.ColdGammaColor2();
+            var actual = Colors.Color2();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void TestColdGammaColor3ReturnsCorrectValue()
+        public void TestColor3ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(2, 205, 232);
+            var expected = new Color(50, 50, 200);
 
             //Act
-            var actual = Colors.ColdGammaColor3();
+            var actual = Colors.Color3();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void TestColdGammaColor4ReturnsCorrectValue()
+        public void TestColor4ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(32, 96, 105);
+            var expected = new Color(200, 200, 50);
 
             //Act
-            var actual = Colors.ColdGammaColor4();
+            var actual = Colors.Color4();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void TestColdGammaColor5ReturnsCorrectValue()
+        public void TestColor5ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(17, 167, 218);
+            var expected = new Color(200, 50, 200);
 
             //Act
-            var actual = Colors.ColdGammaColor5();
+            var actual = Colors.Color5();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void TestColdGammaColor6ReturnsCorrectValue()
+        public void TestColor6ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(160, 217, 236);
+            var expected = new Color(50, 200, 200);
 
             //Act
-            var actual = Colors.ColdGammaColor6();
+            var actual = Colors.Color6();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void TestColdGammaColor7ReturnsCorrectValue()
+        public void TestColor7ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(0, 179, 212);
+            var expected = new Color(155, 50, 155);
 
             //Act
-            var actual = Colors.ColdGammaColor7();
+            var actual = Colors.Color7();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void TestColdGammaColor8ReturnsCorrectValue()
+        public void TestColor8ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(56, 150, 179);
+            var expected = new Color(60, 32, 200);
 
             //Act
-            var actual = Colors.ColdGammaColor8();
+            var actual = Colors.Color8();
 
             //Assert
             Assert.AreEqual(expected, actual);

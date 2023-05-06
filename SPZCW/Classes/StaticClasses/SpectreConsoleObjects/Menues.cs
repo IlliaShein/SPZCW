@@ -16,7 +16,7 @@ namespace SPZCW.Classes.StaticClasses
             "Filter services",
             "Process service",
             "Help",
-            "[purple]Exit[/]"
+            "[red]Exit[/]"
             });
         }
 
