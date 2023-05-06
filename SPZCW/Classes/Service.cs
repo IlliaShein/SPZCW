@@ -29,6 +29,8 @@ namespace SPZCW
             ServiceName = service.ServiceName;
             MachineName = service.MachineName;
 
+            CanStop = service.CanStop;
+
             StartType = service.StartType;
             ServiceType = service.ServiceType;
             Status = service.Status;

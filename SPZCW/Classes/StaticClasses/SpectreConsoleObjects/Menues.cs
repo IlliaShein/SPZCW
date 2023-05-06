@@ -45,9 +45,10 @@ namespace SPZCW.Classes.StaticClasses
             "[purple]Back[/]",
             });
         }
+
         private static string GetStartOrStopChoise(IService service)
         {
-            if (service.Status == ServiceControllerStatus.Stopped)
+            if (service.Status == ServiceControllerStatus.Stopped || !service.CanStop)
             {
                 return "Start";
             }

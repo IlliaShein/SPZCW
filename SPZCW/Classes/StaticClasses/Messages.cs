@@ -13,7 +13,7 @@ namespace SPZCW.Classes.StaticClasses
 
         public static string ServiceDescriptionHelp()
         {
-            string introduction = "[bald]This program is designed to provide an intuitive and user-friendly interface for" +
+            string introduction = "[bold]This program is designed to provide an intuitive and user-friendly interface for" +
                 " managing Windows services.[/]\n\n\r";
             string mainText = "You can view information about running, stopped and services with any status using buttons" +
                 " \"Active services\", \"Stopped services\" and \"All services\" respectively. If you need to search for other" +
@@ -139,8 +139,9 @@ namespace SPZCW.Classes.StaticClasses
             string startType =   $"Start Type   :\t{service.StartType}\n\r";
             string servicePath = $"Path         :\t{service.Path}\n\r";
             string status =      $"Status       :\t{service.Status}\n\r";
+            string canStop =     $"Can stop     :\t{service.CanStop}\n\r";
 
-            return description + displayName + serviceName + machineName + serviceType + servicePath + startType + status;
+            return description + displayName + serviceName + machineName + serviceType + servicePath + startType + status + canStop;
         }
     }
 }
