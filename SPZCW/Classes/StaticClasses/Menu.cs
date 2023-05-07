@@ -1,6 +1,7 @@
 ﻿using Spectre.Console;
 using SPZCW.Classes;
 using SPZCW.Classes.StaticClasses;
+using SPZCW.Classes.StaticClasses.SpectreConsoleObjects;
 using SPZCW.Interfaces;
 using SPZCW.Nums;
 using System;
@@ -37,7 +38,7 @@ namespace SPZCW
                 default:
                     throw new ArgumentException($"non-existent type: {type}");
             }
-            AnsiConsole.Write(SpectreConsoleObjects.GetTitle());
+            AnsiConsole.Write(MainTitle.Title);
 
             AnsiConsole.Write(chart);
             Console.WriteLine("\n");
@@ -115,7 +116,7 @@ namespace SPZCW
             }
             catch(Exception ex)
             {
-                AnsiConsole.Write(SpectreConsoleObjects.Error(ex.Message));
+                AnsiConsole.Write(Messages.Error(ex.Message));
                 return;
             }
 
@@ -154,7 +155,7 @@ namespace SPZCW
             while (true)
             {
                 Console.WriteLine();
-                AnsiConsole.Write(SpectreConsoleObjects.GetServicePathTree(service.Path));
+                AnsiConsole.Write(PathTree.GetServicePathTree(service.Path));
                 Console.WriteLine(Messages.ServiceInfo(service));
 
                 var actionsMenuChoise = AnsiConsole.Prompt(Menues.GetActionsMenu(service));
@@ -199,7 +200,7 @@ namespace SPZCW
             }
             catch (Exception ex)
             {
-                AnsiConsole.Write(SpectreConsoleObjects.Error(ex.Message));
+                AnsiConsole.Write(Messages.Error(ex.Message));
             }
         }
         private static void StopChoiseProcessing(IService service)
@@ -358,19 +359,19 @@ namespace SPZCW
             switch (helpMenuChoise)
             {
                 case "Program description":
-                    AnsiConsole.Write(new Markup(Messages.ServiceDescriptionHelp()));
+                    AnsiConsole.Write(HelpMenuText.ServiceDescription);
                     break;
                 case "Service names":
-                    AnsiConsole.Write(new Markup(Messages.ServiceNamesHelp()));
+                    AnsiConsole.Write(HelpMenuText.ServiceNames);
                     break;
                 case "Service start types":
-                    AnsiConsole.Write(new Markup(Messages.ServiceStartTypesHelp()));
+                    AnsiConsole.Write(HelpMenuText.ServiceStartTypes);
                     break;
                 case "Service Status":
-                    AnsiConsole.Write(new Markup(Messages.ServiceStatusHelp()));
+                    AnsiConsole.Write(HelpMenuText.ServiceStatus);
                     break;
                 case "Service types":
-                    AnsiConsole.Write(new Markup(Messages.ServiceTypesHelp()));
+                    AnsiConsole.Write(HelpMenuText.ServiceTypes);
                     break;
             }
         }

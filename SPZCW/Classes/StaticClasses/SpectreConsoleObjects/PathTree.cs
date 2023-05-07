@@ -1,19 +1,9 @@
 ﻿using Spectre.Console;
 
-namespace SPZCW
+namespace SPZCW.Classes.StaticClasses.SpectreConsoleObjects
 {
-    public static class SpectreConsoleObjects
+    public static class PathTree
     {
-        public static Markup Error(string errorMessage)
-        {
-            return new Markup($"\n[red1]Error: {errorMessage}[/]\n");
-        }
-
-        public static FigletText GetTitle()
-        {
-            return new FigletText("SPZCW").LeftJustified().Centered();
-        }
-
         public static Tree GetServicePathTree(string path)
         {
             Tree pathRoot = null;
@@ -25,7 +15,7 @@ namespace SPZCW
             {
                 pathRoot = new Tree(splittedPath[0]);
 
-                if(splittedPath.Length >= 2)
+                if (splittedPath.Length >= 2)
                 {
                     branches[0] = pathRoot.AddNode(splittedPath[1]);
                 }

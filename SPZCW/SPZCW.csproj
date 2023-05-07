@@ -64,6 +64,7 @@
     <Compile Include="Classes\FilterSettings.cs" />
     <Compile Include="Classes\ServiceControllerWrapper.cs" />
     <Compile Include="Classes\StaticClasses\Colors.cs" />
+    <Compile Include="Classes\StaticClasses\Messages.cs" />
     <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\MainMenuChart\MainMenuChart.cs" />
     <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\MainMenuChart\AllServices.cs" />
     <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\MainMenuChart\ServicesMachineNameData.cs" />
@@ -71,11 +72,12 @@
     <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\MainMenuChart\ServicesStatusData.cs" />
     <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\MainMenuChart\ServicesTypesData.cs" />
     <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\Menues.cs" />
-    <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\SpectreConsoleObjects.cs" />
+    <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\PathTree.cs" />
     <Compile Include="Classes\StaticClasses\Menu.cs" />
     <Compile Include="Classes\Program.cs" />
-    <Compile Include="Classes\StaticClasses\Messages.cs" />
+    <Compile Include="Classes\StaticClasses\HelpMenuText.cs" />
     <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\Tables.cs" />
+    <Compile Include="Classes\StaticClasses\SpectreConsoleObjects\Title.cs" />
     <Compile Include="Enumerations\ServiceLocation.cs" />
     <Compile Include="Interfaces\IFilterSettings.cs" />
     <Compile Include="Interfaces\IService.cs" />
