@@ -1,5 +1,4 @@
 ﻿using Spectre.Console;
-using SPZCW.Interfaces;
 
 namespace SPZCW.Classes.StaticClasses
 {

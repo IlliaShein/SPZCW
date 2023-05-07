@@ -104,5 +104,11 @@ namespace SPZCWTests
             Assert.AreEqual(expected6, actual6);
             Assert.AreEqual(expected7, actual7);
         }
+
+        [TestMethod]
+        public void TestErrorDontReturnsNull()
+        {
+            Assert.IsNotNull(Messages.Error("test"));
+        }
     }
 }

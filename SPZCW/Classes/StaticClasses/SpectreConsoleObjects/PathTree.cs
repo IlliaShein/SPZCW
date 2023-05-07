@@ -6,10 +6,10 @@ namespace SPZCW.Classes.StaticClasses.SpectreConsoleObjects
     {
         public static Tree GetServicePathTree(string path)
         {
-            Tree pathRoot = null;
-            TreeNode[] branches = new TreeNode[9];
-
             string[] splittedPath = path.Split('\\');
+
+            Tree pathRoot = null;
+            TreeNode[] branches = new TreeNode[splittedPath.Length - 1];
 
             if (splittedPath.Length >= 1)
             {

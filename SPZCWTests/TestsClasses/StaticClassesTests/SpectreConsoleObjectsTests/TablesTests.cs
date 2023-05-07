@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SPZCW.Classes;
 using SPZCW.Classes.StaticClasses;
-using SPZCW.Interfaces;
 using System.Collections.Generic;
 using System.ServiceProcess;
 
