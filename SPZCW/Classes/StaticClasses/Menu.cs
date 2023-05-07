@@ -65,7 +65,7 @@ namespace SPZCW
                 case "Help":
                     HelpChoiseProcessing();
                     break;
-                case "[purple]Exit[/]":
+                case "[red1]Exit[/]":
                     Environment.Exit(0);
                     break;
             }
@@ -158,7 +158,7 @@ namespace SPZCW
                 Console.WriteLine(Messages.ServiceInfo(service));
 
                 var actionsMenuChoise = AnsiConsole.Prompt(Menues.GetActionsMenu(service));
-                if (actionsMenuChoise == "[purple]Back[/]")
+                if (actionsMenuChoise == "[red1]Back[/]")
                 {
                     break;
                 }
@@ -307,7 +307,7 @@ namespace SPZCW
                     case "System":
                         service.ChangeStartType(ServiceStartMode.System);
                         break;
-                    case "[purple]Back[/]":
+                    case "[red1]Back[/]":
                         return;
                 }
             }
@@ -345,7 +345,7 @@ namespace SPZCW
             {
                 var helpMenuChoise = AnsiConsole.Prompt(Menues.GetHelpMenu());
 
-                if (helpMenuChoise == "[purple]Back[/]")
+                if (helpMenuChoise == "[red1]Back[/]")
                 {
                     break;
                 }

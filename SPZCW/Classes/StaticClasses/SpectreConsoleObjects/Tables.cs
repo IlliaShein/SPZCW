@@ -81,11 +81,11 @@ namespace SPZCW.Classes.StaticClasses
 
             if (service.Status == ServiceControllerStatus.Stopped)
             {
-                color = "red";
+                color = "red1";
             }
             else if (service.Status == ServiceControllerStatus.Running)
             {
-                color = "lime";
+                color = "mediumturquoise";
             }
             else
             {

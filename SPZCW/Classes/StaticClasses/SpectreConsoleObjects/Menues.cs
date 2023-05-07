@@ -16,7 +16,7 @@ namespace SPZCW.Classes.StaticClasses
             "Filter services",
             "Process service",
             "Help",
-            "[red]Exit[/]"
+            "[red1]Exit[/]"
             });
         }
 
@@ -42,7 +42,7 @@ namespace SPZCW.Classes.StaticClasses
             "Change start type",
             "Change display name",
             "Change description",
-            "[purple]Back[/]",
+            "[red1]Back[/]",
             });
         }
 
@@ -67,7 +67,7 @@ namespace SPZCW.Classes.StaticClasses
             "Disabled",
             "Boot",
             "System",
-            "[purple]Back[/]"
+            "[red1]Back[/]"
             });
         }
 
@@ -80,7 +80,7 @@ namespace SPZCW.Classes.StaticClasses
             "Service names",
             "Service start types",
             "Service types",
-            "[purple]Back[/]"
+            "[red1]Back[/]"
             });
         }
     }

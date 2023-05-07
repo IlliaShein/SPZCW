@@ -158,9 +158,9 @@ namespace SPZCW.Classes.StaticClasses
                     .AddItem("KernelDriver", kernelDrivePercentage, Colors.Color3())
                     .AddItem("FileSystemDriver", fileSystemDriverPercentage, Colors.Color4())
                     .AddItem("Adapter", adapterPercentage, Colors.Color5())
-                    .AddItem("InteractiveProcess", interactiveProcessPercentage, Colors.Color6())
-                    .AddItem("RecognizerDriver", recognizerDriverPercentage, Colors.Color7())
-                    .AddItem("Other", otherPercentage, Colors.Color8());
+                    .AddItem("InteractiveProcess", interactiveProcessPercentage, Colors.Color4())
+                    .AddItem("RecognizerDriver", recognizerDriverPercentage, Colors.Color3())
+                    .AddItem("Other", otherPercentage, Colors.Color2());
         }
 
         public static BreakdownChart GetMainMenuChartByMachineName()

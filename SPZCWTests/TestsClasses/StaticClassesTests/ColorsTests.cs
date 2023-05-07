@@ -11,7 +11,7 @@ namespace SPZCWTests
         public void TestColor1ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(200, 50, 50);
+            var expected = new Color(0, 111, 116);
 
             //Act
             var actual = Colors.Color1();
@@ -24,7 +24,7 @@ namespace SPZCWTests
         public void TestColor2ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(50, 200, 50);
+            var expected = new Color(129, 205, 194);
 
             //Act
             var actual = Colors.Color2();
@@ -37,7 +37,7 @@ namespace SPZCWTests
         public void TestColor3ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(50, 50, 200);
+            var expected = new Color(254, 242, 215);
 
             //Act
             var actual = Colors.Color3();
@@ -50,7 +50,7 @@ namespace SPZCWTests
         public void TestColor4ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(200, 200, 50);
+            var expected = new Color(243, 140, 118);
 
             //Act
             var actual = Colors.Color4();
@@ -63,49 +63,10 @@ namespace SPZCWTests
         public void TestColor5ReturnsCorrectValue()
         {
             //Arrange
-            var expected = new Color(200, 50, 200);
+            var expected = new Color(242, 78, 74);
 
             //Act
             var actual = Colors.Color5();
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void TestColor6ReturnsCorrectValue()
-        {
-            //Arrange
-            var expected = new Color(50, 200, 200);
-
-            //Act
-            var actual = Colors.Color6();
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void TestColor7ReturnsCorrectValue()
-        {
-            //Arrange
-            var expected = new Color(155, 50, 155);
-
-            //Act
-            var actual = Colors.Color7();
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void TestColor8ReturnsCorrectValue()
-        {
-            //Arrange
-            var expected = new Color(60, 32, 200);
-
-            //Act
-            var actual = Colors.Color8();
 
             //Assert
             Assert.AreEqual(expected, actual);

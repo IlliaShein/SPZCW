@@ -6,7 +6,7 @@ namespace SPZCW
     {
         public static Markup Error(string errorMessage)
         {
-            return new Markup($"\n[red]Error: {errorMessage}[/]\n");
+            return new Markup($"\n[red1]Error: {errorMessage}[/]\n");
         }
 
         public static FigletText GetTitle()
