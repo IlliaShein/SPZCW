@@ -13,8 +13,7 @@ namespace SPZCW.Classes.StaticClasses
 
             foreach (var service in Program.Services)
             {
-                string statusStr = GetStatusStringWithColorNote(service);
-                table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description, statusStr);
+                AddServiceToTableWithStatus(table, service);
             }
 
             return table;
@@ -28,7 +27,7 @@ namespace SPZCW.Classes.StaticClasses
             {
                 if (service.Status == status)
                 {
-                    table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description);
+                    AddServiceToTable(table, service);
                 }
             }
 
@@ -46,13 +45,23 @@ namespace SPZCW.Classes.StaticClasses
                     if ((service.MachineName == "." && filterSettings.Locations.Contains(ServiceLocation.LocalHost))
                     || (service.MachineName != "." && filterSettings.Locations.Contains(ServiceLocation.AnotherDevice)))
                     {
-                        string statusStr = GetStatusStringWithColorNote(service);
-                        table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description, statusStr);
+                        AddServiceToTableWithStatus(table,service);
                     }
                 }
             }
 
             return table;
+        }
+
+        private static void AddServiceToTable(Table table, IService service)
+        {
+            table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description);
+        }
+
+        private static void AddServiceToTableWithStatus(Table table , IService service)
+        {
+            string statusStr = GetStatusStringWithColorNote(service);
+            table.AddRow(service.DisplayName, service.ServiceName, service.MachineName, service.StartType.ToString(), service.ServiceType.ToString(), service.Path, service.Description, statusStr);
         }
 
         private static Table GetServicesTable(bool addStatusColumn)

@@ -35,6 +35,17 @@ namespace SPZCWTests
         public void TestConstructorCreatesCorrectLists()
         {
             //Arrange
+            List<string> choices = CreateListWithChoices();
+            //Act
+            FilterSettings filterSettings = new FilterSettings(choices);
+            bool correctFilling = CheckCorrectFilterSettingsFilling(filterSettings);
+
+            //Assert
+            Assert.IsTrue(correctFilling);
+        }
+
+        private List<string>  CreateListWithChoices()
+        {
             List<string> choices = new List<string>();
             choices.Add("Running");
             choices.Add("Stopped");
@@ -49,31 +60,30 @@ namespace SPZCWTests
             choices.Add("Another device");
             choices.Add("Localhost");
 
-            bool correctFilling = false;
+            return choices;
+        }
 
-            //Act
-            FilterSettings filterSettings = new FilterSettings(choices);
-
+        private bool CheckCorrectFilterSettingsFilling(FilterSettings filterSettings)
+        {
             if (filterSettings.Locations.Contains(ServiceLocation.AnotherDevice)
-            && filterSettings.Locations.Contains(ServiceLocation.LocalHost)
-            && filterSettings.StartModes.Contains(ServiceStartMode.Automatic)
-            && filterSettings.StartModes.Contains(ServiceStartMode.Disabled)
-            && filterSettings.StartModes.Contains(ServiceStartMode.Boot)
-            && filterSettings.StartModes.Contains(ServiceStartMode.Manual)
-            && filterSettings.StartModes.Contains(ServiceStartMode.System)
-            && filterSettings.Statuses.Contains(ServiceControllerStatus.Running)
-            && filterSettings.Statuses.Contains(ServiceControllerStatus.Stopped)
-            && filterSettings.Statuses.Contains(ServiceControllerStatus.ContinuePending)
-            && filterSettings.Statuses.Contains(ServiceControllerStatus.Paused)
-            && filterSettings.Statuses.Contains(ServiceControllerStatus.StartPending)
-            && filterSettings.Statuses.Contains(ServiceControllerStatus.StartPending)
-            && filterSettings.Statuses.Contains(ServiceControllerStatus.StopPending))
+                && filterSettings.Locations.Contains(ServiceLocation.LocalHost)
+                && filterSettings.StartModes.Contains(ServiceStartMode.Automatic)
+                && filterSettings.StartModes.Contains(ServiceStartMode.Disabled)
+                && filterSettings.StartModes.Contains(ServiceStartMode.Boot)
+                && filterSettings.StartModes.Contains(ServiceStartMode.Manual)
+                && filterSettings.StartModes.Contains(ServiceStartMode.System)
+                && filterSettings.Statuses.Contains(ServiceControllerStatus.Running)
+                && filterSettings.Statuses.Contains(ServiceControllerStatus.Stopped)
+                && filterSettings.Statuses.Contains(ServiceControllerStatus.ContinuePending)
+                && filterSettings.Statuses.Contains(ServiceControllerStatus.Paused)
+                && filterSettings.Statuses.Contains(ServiceControllerStatus.StartPending)
+                && filterSettings.Statuses.Contains(ServiceControllerStatus.StartPending)
+                && filterSettings.Statuses.Contains(ServiceControllerStatus.StopPending))
             {
-                correctFilling = true;
+                return true;
             }
 
-            //Assert
-            Assert.IsTrue(correctFilling);
+            return false;
         }
     }
 }

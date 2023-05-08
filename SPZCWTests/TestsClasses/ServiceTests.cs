@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Win32;
 using Moq;
 using SPZCW;
 using SPZCW.Interfaces;
