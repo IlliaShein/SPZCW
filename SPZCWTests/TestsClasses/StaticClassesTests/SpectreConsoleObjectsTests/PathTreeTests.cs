@@ -7,7 +7,7 @@ namespace SPZCWTests.TestsClasses.StaticClassesTests.SpectreConsoleObjectsTests
     public class PathTreeTests
     {
         [TestMethod]
-        public void Test()
+        public void TestGetServicePathTreeReturnsNotNull()
         {
             Assert.IsNotNull(PathTree.GetServicePathTree("path"));
         }

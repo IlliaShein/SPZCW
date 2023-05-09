@@ -4,7 +4,7 @@ namespace SPZCW.Classes.StaticClasses
 {
     public static class HelpMenuText
     {   
-        public static Markup ServiceDescription { get; } = new Markup("[bold]This program is designed to provide an intuitive and" +
+        public static Markup ProgramDescription { get; } = new Markup("[bold]This program is designed to provide an intuitive and" +
             " user-friendly interface for + managing Windows services.[/]\n\n\r" +
             "You can view information about running, stopped and services with any status using buttons" +
             " \"Active services\", \"Stopped services\" and \"All services\" respectively. If you need to search for other" +

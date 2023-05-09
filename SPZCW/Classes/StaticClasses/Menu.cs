@@ -359,7 +359,7 @@ namespace SPZCW
             switch (helpMenuChoise)
             {
                 case "Program description":
-                    AnsiConsole.Write(HelpMenuText.ServiceDescription);
+                    AnsiConsole.Write(HelpMenuText.ProgramDescription);
                     break;
                 case "Service names":
                     AnsiConsole.Write(HelpMenuText.ServiceNames);
