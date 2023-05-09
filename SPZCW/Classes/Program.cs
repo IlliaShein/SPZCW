@@ -8,7 +8,22 @@ namespace SPZCW
     public class Program
     {
         public static IService[] Services { get; set; } = GetServices();
-        static void Main(string[] args)
+
+        public static IService[] GetServices()
+        {
+            ServiceController[] services = ServiceController.GetServices();
+            IService[] Services = new Service[services.Length];
+
+            for (int i = 0; i < services.Length; i++)
+            {
+                ServiceControllerWrapper SCwrapper = new ServiceControllerWrapper(services[i]);
+                Services[i] = new Service(SCwrapper);
+            }
+
+            return Services;
+        }
+
+        private static void Main(string[] args)
         {
             MainMenuChartType type = MainMenuChartType.ByStatus;
             while (true)
@@ -24,20 +39,6 @@ namespace SPZCW
                     type++;
                 }
             }
-        }
-
-        public static IService [] GetServices()
-        {
-            ServiceController[] services = ServiceController.GetServices();
-            IService[] Services = new Service[services.Length];
-
-            for (int i = 0; i < services.Length; i++)
-            {
-                ServiceControllerWrapper SCwrapper = new ServiceControllerWrapper(services[i]);
-                Services[i] = new Service(SCwrapper);
-            }
-
-            return Services;
         }
     }
 }

@@ -350,11 +350,11 @@ namespace SPZCW
                 {
                     break;
                 }
-                helpMenuChoiseProcessing(helpMenuChoise);
+                HelpMenuChoiseProcessing(helpMenuChoise);
             }
         }
 
-        private static void helpMenuChoiseProcessing(string helpMenuChoise)
+        private static void HelpMenuChoiseProcessing(string helpMenuChoise)
         {
             switch (helpMenuChoise)
             {
